@@ -1,0 +1,153 @@
+D:\sample_api\bin\Debug\net8.0\sample_api.exe
+D:\sample_api\bin\Debug\net8.0\sample_api.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\sample_api\obj\Debug\net8.0\sample_api.csproj.AssemblyReference.cache
+D:\sample_api\obj\Debug\net8.0\sample_api.GeneratedMSBuildEditorConfig.editorconfig
+D:\sample_api\obj\Debug\net8.0\sample_api.AssemblyInfoInputs.cache
+D:\sample_api\obj\Debug\net8.0\sample_api.AssemblyInfo.cs
+D:\sample_api\obj\Debug\net8.0\sample_api.csproj.CoreCompileInputs.cache
+D:\sample_api\obj\Debug\net8.0\sample_api.MvcApplicationPartsAssemblyInfo.cs
+D:\sample_api\obj\Debug\net8.0\sample_api.MvcApplicationPartsAssemblyInfo.cache
+D:\sample_api\bin\Debug\net8.0\appsettings.Development.json
+D:\sample_api\bin\Debug\net8.0\appsettings.json
+D:\sample_api\bin\Debug\net8.0\sample_api.staticwebassets.endpoints.json
+D:\sample_api\bin\Debug\net8.0\sample_api.deps.json
+D:\sample_api\bin\Debug\net8.0\sample_api.runtimeconfig.json
+D:\sample_api\bin\Debug\net8.0\sample_api.pdb
+D:\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\sample_api\bin\Debug\net8.0\MySqlConnector.dll
+D:\sample_api\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\sample_api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\sample_api\obj\Debug\net8.0\scopedcss\bundle\sample_api.styles.css
+D:\sample_api\obj\Debug\net8.0\staticwebassets.build.json
+D:\sample_api\obj\Debug\net8.0\staticwebassets.development.json
+D:\sample_api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.sample_api.Microsoft.AspNetCore.StaticWebAssets.props
+D:\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.sample_api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.build.sample_api.props
+D:\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.sample_api.props
+D:\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.sample_api.props
+D:\sample_api\obj\Debug\net8.0\staticwebassets.pack.json
+D:\sample_api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\sample_api\obj\Debug\net8.0\sample_api.csproj.Up2Date
+D:\sample_api\obj\Debug\net8.0\sample_api.dll
+D:\sample_api\obj\Debug\net8.0\refint\sample_api.dll
+D:\sample_api\obj\Debug\net8.0\sample_api.pdb
+D:\sample_api\obj\Debug\net8.0\sample_api.genruntimeconfig.cache
+D:\sample_api\obj\Debug\net8.0\ref\sample_api.dll
+D:\sample_api\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\sample_api\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\sample_api\bin\Debug\net8.0\Google.Protobuf.dll
+D:\sample_api\bin\Debug\net8.0\K4os.Compression.LZ4.dll
+D:\sample_api\bin\Debug\net8.0\K4os.Compression.LZ4.Streams.dll
+D:\sample_api\bin\Debug\net8.0\K4os.Hash.xxHash.dll
+D:\sample_api\bin\Debug\net8.0\MySql.Data.dll
+D:\sample_api\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\sample_api\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\sample_api\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\sample_api\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\sample_api\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\sample_api\bin\Debug\net8.0\System.Text.Json.dll
+D:\sample_api\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\sample_api\bin\Debug\net8.0\ZstdSharp.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\comerr64.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\gssapi64.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\k5sprt64.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\sample_api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+D:\sample_api\bin\Debug\net8.0\DnsClient.dll
+D:\sample_api\bin\Debug\net8.0\MongoDB.Bson.dll
+D:\sample_api\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\sample_api\bin\Debug\net8.0\SharpCompress.dll
+D:\sample_api\bin\Debug\net8.0\Snappier.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\appsettings.Development.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\appsettings.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.staticwebassets.endpoints.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.exe
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.deps.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.runtimeconfig.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\sample_api.pdb
+D:\C# Projects\sample_api\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\DnsClient.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Google.Protobuf.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\K4os.Compression.LZ4.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\K4os.Compression.LZ4.Streams.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\K4os.Hash.xxHash.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\MongoDB.Bson.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\MySql.Data.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\MySqlConnector.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\SharpCompress.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Snappier.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Text.Json.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\ZstdSharp.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\comerr64.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\gssapi64.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\k5sprt64.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.csproj.AssemblyReference.cache
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.GeneratedMSBuildEditorConfig.editorconfig
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.AssemblyInfoInputs.cache
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.AssemblyInfo.cs
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.csproj.CoreCompileInputs.cache
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.MvcApplicationPartsAssemblyInfo.cs
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.MvcApplicationPartsAssemblyInfo.cache
+D:\C# Projects\sample_api\obj\Debug\net8.0\scopedcss\bundle\sample_api.styles.css
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets.build.json
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets.development.json
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.sample_api.Microsoft.AspNetCore.StaticWebAssets.props
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.sample_api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.build.sample_api.props
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.sample_api.props
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.sample_api.props
+D:\C# Projects\sample_api\obj\Debug\net8.0\staticwebassets.pack.json
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.csproj.Up2Date
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.dll
+D:\C# Projects\sample_api\obj\Debug\net8.0\refint\sample_api.dll
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.pdb
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.genruntimeconfig.cache
+D:\C# Projects\sample_api\obj\Debug\net8.0\ref\sample_api.dll

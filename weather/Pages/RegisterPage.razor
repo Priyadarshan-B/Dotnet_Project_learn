@@ -1,0 +1,96 @@
+﻿@page "/register"
+@using MudBlazor
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="login-container">
+    <MudPaper Elevation="3" Class="pa-10 ma-2">
+        <MudText Typo="Typo.h5" Class="mud-text-center mud-mb-4">Register</MudText>
+
+        <MudForm Model="registerModel" >
+            <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true" @bind-Value="registerModel.Username" />
+
+            @* <MudTextField Label="Password" Required="true" @bind-Value="registerModel.Password" InputType="InputType.Password" /> *@
+            <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense"
+            Required="true" @bind-Value="registerModel.Password"
+            InputType="@PasswordInput" Adornment="Adornment.End"
+            AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
+            </MudTextField>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary"  OnClick="@(()=>HandleRegister())" type="submit" Disabled="isLoading">
+                @if (isLoading)
+                {
+                    <MudProgressCircular Size="Size.Medium" Color="Color.Secondary" />
+                }
+                else
+                {
+                    <span>Register</span>
+                }
+            </MudButton>
+        </MudForm>
+
+@*         <MudAlert Severity="Severity.Success" Class="mud-mt-4" visible="!string.IsNullOrEmpty(successMessage)"> *@
+@*             @successMessage *@
+@* </MudAlert> *@
+
+@* <MudAlert Severity="Severity.Error" Class="mud-mt-4" visible="!string.IsNullOrEmpty(errorMessage)"> *@
+@*             @errorMessage *@
+@* </MudAlert> *@
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private RegisterModel registerModel = new();
+    private bool isLoading = false;
+    private string? successMessage = null;
+    private string? errorMessage = null;
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+
+    private string SuccessMessageStyle => string.IsNullOrEmpty(successMessage) ? "display: none;" : "display: block;";
+    private string ErrorMessageStyle => string.IsNullOrEmpty(errorMessage) ? "display: none;" : "display: block;";
+
+    private async Task HandleRegister()
+    {
+        isLoading = true;
+        errorMessage = null;
+        successMessage = null;
+
+        var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/register", registerModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            successMessage = "Registration successful! Please log in.";
+			Navigation.NavigateTo("/login");
+        }
+        else
+        {
+            errorMessage = "Registration failed.";
+        }
+
+        isLoading = false;
+    }
+
+    public class RegisterModel
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+}

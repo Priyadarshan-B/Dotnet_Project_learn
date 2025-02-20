@@ -1,0 +1,78 @@
+﻿@page "/weather"
+@using MudBlazor
+@inject HttpClient Http
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="weather-container">
+    <MudPaper Elevation="4" Class="pa-10 ma-2">
+        <MudText Typo="Typo.h4" Class="text-center mb-4">Weather Forecast</MudText>
+
+        <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
+
+        <MudButton Color="Color.Primary" Class="mt-4" OnClick="GetWeather" Disabled="isLoading">
+            @if (isLoading)
+            {
+                    <MudProgressCircular Size="Size.Small" />
+            }
+            else
+            {
+                    <span>Get Weather Report</span>
+            }
+        </MudButton>
+
+        @if (weatherData != null)
+        {
+                <MudCard Class="mt-4">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5">@weatherData.Name</MudText>
+                        <MudText Typo="Typo.subtitle1">@weatherData.Weather[0].Description</MudText>
+                        <MudText Typo="Typo.body1">Temperature: @weatherData.Main.Temp °C</MudText>
+                        <MudText Typo="Typo.body1">Humidity: @weatherData.Main.Humidity%</MudText>
+                        <MudText Typo="Typo.body1">Wind Speed: @weatherData.Wind.Speed m/s</MudText>
+                    </MudCardContent>
+                </MudCard>
+        }
+
+        @* <MudAlert Severity="Severity.Error" Class="mt-4" visible="@(errorMessage != null)"> *@
+        @*     @errorMessage *@
+        @* </MudAlert> *@
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private string City { get; set; } = "London"; 
+    private bool isLoading = false;
+    private string? errorMessage = null;
+    private WeatherResponse? weatherData;
+
+    private async Task GetWeather()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            string apiKey = "89356047c4e56dd8d6f6ed9836260769";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={City}&appid={apiKey}&units=metric";
+
+            weatherData = await Http.GetFromJsonAsync<WeatherResponse>(url);
+        }
+        catch (Exception)
+        {
+            errorMessage = "Failed to fetch weather data.";
+        }
+
+        isLoading = false;
+    }
+
+    public class WeatherResponse
+    {
+        public string Name { get; set; } = "";
+        public MainData Main { get; set; } = new();
+        public WindData Wind { get; set; } = new();
+        public List<WeatherDescription> Weather { get; set; } = new();
+    }
+
+    public class MainData { public double Temp { get; set; } public int Humidity { get; set; } }
+    public class WindData { public double Speed { get; set; } }
+    public class WeatherDescription { public string Description { get; set; } = ""; }
+}
