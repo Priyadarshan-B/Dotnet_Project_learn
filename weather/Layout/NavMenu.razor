@@ -1,4 +1,18 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@* <MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <MudNavMenu Class="mud-width-full">
+        <MudText Typo="Typo.h6" Class="px-4">Weather</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">climate</MudText>
+        <MudDivider Class="my-2" />
+        <MudNavLink Href="/weather" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
+        <MudNavGroup Title="Login" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+            <MudNavLink Href="/register" Icon="@Icons.Material.Filled.People" IconColor="Color.Success">Register</MudNavLink>
+            <MudNavLink Href="/logout" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info">Logout</MudNavLink>
+        </MudNavGroup>
+    </MudNavMenu>
+</MudPaper> *@
+
+
+@* <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">weather</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -19,7 +33,7 @@
         @*         <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter *@
         @*     </NavLink> *@
         @* </div> *@
-        <div class="nav-item px-3">
+        @* <div class="nav-item px-3">
             <NavLink class="nav-link" href="weather">
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
             </NavLink>
@@ -30,9 +44,9 @@
             </NavLink>
         </div>
     </nav>
-</div>
+</div> *@
 
-@code {
+@* @code {
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -41,4 +55,4 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
-}
+} *@

@@ -138,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ApplicationBundle</AssetTraitValue>
-      <Fingerprint>snmdw7zqfd</Fingerprint>
-      <Integrity>+P/cz36q8M9QyeB4QlbbOx8n4x/LVXVUEFPxJGygM1o=</Integrity>
+      <Fingerprint>4nc60m4ggg</Fingerprint>
+      <Integrity>gN0OpXhEPlYHQRziBpMFaIoTQVSfPqffydy8mTg11X0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\weather.styles.css'))</OriginalItemSpec>

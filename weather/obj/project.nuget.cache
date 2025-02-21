@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Jz3bkqhwV5M=",
+  "dgSpecHash": "Rxx0Gw/P3oo=",
   "success": true,
-  "projectFilePath": "D:\\C# Projects\\Weather\\weather.csproj",
+  "projectFilePath": "D:\\C# Projects\\weather\\weather.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bpriy\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.13\\microsoft.aspnetcore.authorization.8.0.13.nupkg.sha512",
     "C:\\Users\\bpriy\\.nuget\\packages\\microsoft.aspnetcore.components\\8.0.13\\microsoft.aspnetcore.components.8.0.13.nupkg.sha512",

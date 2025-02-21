@@ -1,27 +1,56 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
-@* Required *@
+@inject NavigationManager Navigation
+
 <MudThemeProvider />
 <MudPopoverProvider />
-
-@* Needed for dialogs *@
 <MudDialogProvider />
-
-@* Needed for snackbars *@
 <MudSnackbarProvider />
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+@if (Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase))
+{
+    @Body
+}
+else
+{
+    <MudLayout>
+        <MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Mini">
+            <MudPaper Width="250px" Class="py-2" Elevation="0">
+                <MudNavMenu Rounded="true" Color="Color.Primary" Class="mud-width-full" Margin="Margin.Dense">
+                    <MudText Typo="Typo.h5" Class="px-4">Weather</MudText>
+                    <MudText Typo="Typo.body1" Class="px-4 mud-text-secondary">Climate</MudText>
+                    <MudDivider Class="my-2" />
+                    <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
+                    <MudNavGroup Title="Login" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+                        <MudNavLink Href="/register" Icon="@Icons.Material.Filled.People" IconColor="Color.Success">Register
+                        </MudNavLink>
+                        <MudNavLink Href="/login" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info">Logout
+                        </MudNavLink>
+                    </MudNavGroup>
+                </MudNavMenu> 
+            </MudPaper>
+        </MudDrawer>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+        <MudMainContent>
+            <MudAppBar Color="Color.Primary">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                    OnClick="ToggleDrawer" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+            </MudAppBar>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+            <article class="content px-4">
+                @Body
+            </article>
+        </MudMainContent>
+    </MudLayout>
+}
+
+@code {
+    private bool _drawerOpen = true;
+
+    private void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen; 
+    }
+}

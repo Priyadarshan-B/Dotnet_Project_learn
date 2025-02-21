@@ -2,16 +2,16 @@
 @using MudBlazor
 @inject HttpClient Http
 
-<MudContainer MaxWidth="MaxWidth.Medium" Class="weather-container">
-    <MudPaper Elevation="4" Class="pa-10 ma-2">
-        <MudText Typo="Typo.h4" Class="text-center mb-4">Weather Forecast</MudText>
+<MudContainer MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container ">
+    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.DeepPurple.Lighten5};")" Color="Color.Primary">
+        <MudText Typo="Typo.h4" Align="Align.Center">Weather Forecast</MudText>
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
 
         <MudButton Color="Color.Primary" Class="mt-4" OnClick="GetWeather" Disabled="isLoading">
             @if (isLoading)
             {
-                    <MudProgressCircular Size="Size.Small" />
+                    <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
             }
             else
             {
@@ -23,18 +23,20 @@
         {
                 <MudCard Class="mt-4">
                     <MudCardContent>
-                        <MudText Typo="Typo.h5">@weatherData.Name</MudText>
-                        <MudText Typo="Typo.subtitle1">@weatherData.Weather[0].Description</MudText>
-                        <MudText Typo="Typo.body1">Temperature: @weatherData.Main.Temp °C</MudText>
-                        <MudText Typo="Typo.body1">Humidity: @weatherData.Main.Humidity%</MudText>
-                        <MudText Typo="Typo.body1">Wind Speed: @weatherData.Wind.Speed m/s</MudText>
+                        <MudText Typo="Typo.h4" Align="Align.Center">@weatherData.Name</MudText>
+                        <MudText Typo="Typo.h5">@weatherData.Weather[0].Description.ToUpper()</MudText>
+                        <MudText Typo="Typo.h6">Temperature: @weatherData.Main.Temp °C</MudText>
+                        <MudText Typo="Typo.h6">Humidity: @weatherData.Main.Humidity%</MudText>
+                        <MudText Typo="Typo.h6">Wind Speed: @weatherData.Wind.Speed m/s</MudText>
                     </MudCardContent>
                 </MudCard>
         }
-
-        @* <MudAlert Severity="Severity.Error" Class="mt-4" visible="@(errorMessage != null)"> *@
-        @*     @errorMessage *@
-        @* </MudAlert> *@
+        @if(!string.IsNullOrEmpty(errorMessage)){
+             <MudAlert Severity="Severity.Error" Class="mt-4" visible="@(errorMessage != null)"> 
+            @errorMessage
+        </MudAlert>
+        }
+       
     </MudPaper>
 </MudContainer>
 

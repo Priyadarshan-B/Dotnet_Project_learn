@@ -5,92 +5,84 @@
 @inject NavigationManager Navigation
 @using System.Text.Json.Serialization
 
-<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="login-container">
-	<MudPaper Elevation="3" Outlined="true" Class="pa-10 ma-2">
-		<MudText Typo="Typo.h5" Class="mud-text-center mud-mb-4">Login</MudText>
-		<MudForm Model="loginModel" onSubmit="HandleLogin">
-			<MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true" @bind-Value="loginModel.Username"></MudTextField>
-			<br />
-			@* <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true" @bind-Value="loginModel.Password" InputType="@PasswordInput" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password"> </MudTextField> *@
-			<MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense"
-			Required="true" @bind-Value="loginModel.Password"
-			InputType="@PasswordInput" Adornment="Adornment.End"
-			AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
-			</MudTextField>
-				<br>
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>HandleLogin())" type="Submit" Disabled="isLoading">
-				@if (isLoading)
-				{
-					<MudProgressCircular Size="Size.Small" Color="Color.Secondary" />
-				}
-				else
-				{
-					<span>Login</span>
-				}
-			</MudButton>
-		</MudForm>
-		@* <MudAlert Severity="Severity.Error" Class="mud-mt-4" visible="@(errorMessage != null)"> *@
-		@* 	@errorMessage *@
-		@* </MudAlert> *@
-	</MudPaper>
-</MudContainer>
+<MudGrid Justify="Justify.Center" AlignItems="AlignItems.Center">
+    <MudItem xs="12" sm="8" md="6" lg="4">
+        <MudPaper Elevation="3" Outlined="true" Class="pa-10">
+            <MudText Typo="Typo.h5" Class="mud-text-center mb-4">Login</MudText>
+            <MudForm Model="loginModel" onSubmit="HandleLogin">
+                <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="loginModel.Username"></MudTextField>
+                <br />
+                <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="loginModel.Password" InputType="@PasswordInput" Adornment="Adornment.End"
+                    AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
+                </MudTextField>
+                <br>
+                <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => HandleLogin())" type="Submit"
+                    Disabled="isLoading" FullWidth="true">
+                    @if (isLoading)
+                    {
+                        <MudProgressCircular Size="Size.Small" Color="Color.Secondary" />
+                    }
+                    else
+                    {
+                        <span>Login</span>
+                    }
+                </MudButton>
+            </MudForm>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <MudAlert Severity="Severity.Error" Class="mt-4" Visible="@( !string.IsNullOrEmpty(errorMessage) )">
+                    @errorMessage
+                </MudAlert>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
 
 @code {
-	private LoginModel loginModel = new();
-	private bool isLoading = false;
-	private string? errorMessage = null;
-	private string AlertStyle => errorMessage == null ? "display: none;" : "display: block;";
+    private LoginModel loginModel = new();
+    private bool isLoading = false;
+    private string? errorMessage = null;
 
-	bool isShow;
-	InputType PasswordInput = InputType.Password;
-	string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-	void ButtonTestclick()
-	{
-		@if (isShow)
-		{
-			isShow = false;
-			PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-			PasswordInput = InputType.Password;
-		}
-		else
-		{
-			isShow = true;
-			PasswordInputIcon = Icons.Material.Filled.Visibility;
-			PasswordInput = InputType.Text;
-		}
-	}
+    void ButtonTestclick()
+    {
+        isShow = !isShow;
+        PasswordInputIcon = isShow ? Icons.Material.Filled.Visibility : Icons.Material.Filled.VisibilityOff;
+        PasswordInput = isShow ? InputType.Text : InputType.Password;
+    }
 
-	private async Task HandleLogin()
-	{
-		Console.WriteLine($"Username: {loginModel.Username}, Password: {loginModel.Password}");
-		isLoading = true;
-		errorMessage = null;
-		StateHasChanged();
-		try
-		{
-			// Console.WriteLine($"Username: {loginModel.Username}, Password: {loginModel.Password}");
-			var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/login", loginModel);
-			if (response.IsSuccessStatusCode)
-			{
-				Navigation.NavigateTo("/weather");
-			}
-			else
-			{
-				errorMessage = "Invalid username or password";
-				StateHasChanged();
-			}
-		}
-		catch (Exception)
-		{
-			errorMessage = "An error occurred";
-		}
-		isLoading = false;
-	}
-	public class LoginModel
-	{
-		public string Username { get; set; } = "";
-		public string Password { get; set; } = "";
-	}
+    private async Task HandleLogin()
+    {
+        isLoading = true;
+        errorMessage = null;
+        StateHasChanged();
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/login", loginModel);
+            if (response.IsSuccessStatusCode)
+            {
+                Navigation.NavigateTo("/weather");
+            }
+            else
+            {
+                errorMessage = "Invalid username or password";
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "An error occurred";
+        }
+        isLoading = false;
+    }
 
+    public class LoginModel
+    {
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
 }

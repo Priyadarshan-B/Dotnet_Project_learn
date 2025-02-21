@@ -151,3 +151,4 @@ D:\C# Projects\sample_api\obj\Debug\net8.0\refint\sample_api.dll
 D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.pdb
 D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.genruntimeconfig.cache
 D:\C# Projects\sample_api\obj\Debug\net8.0\ref\sample_api.dll
+D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.sourcelink.json
