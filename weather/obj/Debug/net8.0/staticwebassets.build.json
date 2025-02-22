@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AB3RmC26wmGNWe7AbnjDKdb8q0w5AJWlDySgn/FpRNA=",
+  "Hash": "aQ+B6h7T+N4/dFbLzkPDGCyyfDnQ8CjGocmcHdhpwtA=",
   "Source": "weather",
   "BasePath": "/",
   "Mode": "Root",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "67565s8033",
-      "Integrity": "LgtaFCIeIU6pdEY4htsy5zOhiGVTc3Oa83AZGc0FR1U=",
+      "Fingerprint": "386se7s05g",
+      "Integrity": "gxgwWE2cQ4VNUduhz8ADkVP2Mmz1bCkSTGJhyXsO6lY=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\blazor.boot.json"
@@ -4378,8 +4378,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "82dgebdfen",
-      "Integrity": "IBDbcc+m6HA8zP5xKkb+B5V/XjUY972aeCrrY84rqnI=",
+      "Fingerprint": "od5t0o15xj",
+      "Integrity": "fHBXanRfZvRPnpw/R5Zl0mbjbYRJCvZYia5WeNDFlv0=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\weather.pdb"
@@ -4399,8 +4399,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "y64tp9rtf6",
-      "Integrity": "eicw5YVmFHxmqeHJHZzVnhSTYNKPNuFjaSsTU0MfliM=",
+      "Fingerprint": "uvuancqopv",
+      "Integrity": "Jn4YfzczLbqHb/qKYuAuNI09g2YsAi9WsrWPBo4Es4Y=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\webcil\\weather.wasm"
@@ -4637,7 +4637,7 @@
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map"
     },
     {
-      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-y64tp9rtf6.gz",
+      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-uvuancqopv.gz",
       "SourceId": "weather",
       "SourceType": "Computed",
       "ContentRoot": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\",
@@ -4651,8 +4651,8 @@
       "RelatedAsset": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\weather.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "92593j0ph1",
-      "Integrity": "Hy9Z4RPK/7biXhFWHUGC+zOBGVWnCWPp0VSCYJzv1Ik=",
+      "Fingerprint": "txsx0yh40j",
+      "Integrity": "wegmoEZYsaZvMSlSRFQ1TQnIQ/AYpFO1OCGBJAnTnAs=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\weather.wasm"
@@ -7115,7 +7115,7 @@
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Security.Cryptography.X509Certificates.wasm"
     },
     {
-      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-67565s8033.gz",
+      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-386se7s05g.gz",
       "SourceId": "weather",
       "SourceType": "Computed",
       "ContentRoot": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\",
@@ -7129,8 +7129,8 @@
       "RelatedAsset": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "ndxmf2vfjf",
-      "Integrity": "hUYSiWts/13FUbW07Es3hU2dQhvlSsYzeaBUJrzOP0g=",
+      "Fingerprint": "vj145m90y1",
+      "Integrity": "2616qOfIjT1p9GWHXmVBPkwXmxXMIZefVA2NWVXgpiU=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -7514,7 +7514,7 @@
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Threading.Tasks.Extensions.wasm"
     },
     {
-      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-82dgebdfen.gz",
+      "Identity": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-od5t0o15xj.gz",
       "SourceId": "weather",
       "SourceType": "Computed",
       "ContentRoot": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\",
@@ -7528,8 +7528,8 @@
       "RelatedAsset": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\weather.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "8pdpz14hvn",
-      "Integrity": "nDj3FY5Wt2tURBtPPYsGlgx+aa/GIqrPqBAlb0iK5uc=",
+      "Fingerprint": "4dce65h4bt",
+      "Integrity": "GEDhqP5I/5cDs7KdA/WJUd5vsmcVJJbHclLbhLig0V0=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\C# Projects\\weather\\bin\\Debug\\net8.0\\wwwroot\\_framework\\weather.pdb"
@@ -8851,53 +8851,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "swsybuv5hr",
-      "Integrity": "JOZWd9XYwDyrwjSB0PVTcc602GisYED21qQUCSMlGtI=",
+      "Fingerprint": "epioj7q86y",
+      "Integrity": "soO683ZMx09ebq2W2HwLyibro9138krA6hEYEnfvPlQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\app.css"
-    },
-    {
-      "Identity": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-      "SourceId": "weather",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\C# Projects\\weather\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/bootstrap/bootstrap.min#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "bpk8xqwxhs",
-      "Integrity": "z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
-    },
-    {
-      "Identity": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
-      "SourceId": "weather",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\C# Projects\\weather\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "8inm30yfxf",
-      "Integrity": "gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
       "Identity": "D:\\C# Projects\\weather\\wwwroot\\favicon.png",
@@ -9168,11 +9126,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LgtaFCIeIU6pdEY4htsy5zOhiGVTc3Oa83AZGc0FR1U=\""
+          "Value": "\"gxgwWE2cQ4VNUduhz8ADkVP2Mmz1bCkSTGJhyXsO6lY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:08:31 GMT"
+          "Value": "Fri, 21 Feb 2025 11:37:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9182,18 +9140,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LgtaFCIeIU6pdEY4htsy5zOhiGVTc3Oa83AZGc0FR1U="
+          "Value": "sha256-gxgwWE2cQ4VNUduhz8ADkVP2Mmz1bCkSTGJhyXsO6lY="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-67565s8033.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-386se7s05g.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000113662196"
+          "Quality": "0.000113623452"
         }
       ],
       "ResponseHeaders": [
@@ -9203,15 +9161,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8797"
+          "Value": "8800"
         },
         {
           "Name": "ETag",
-          "Value": "\"hUYSiWts/13FUbW07Es3hU2dQhvlSsYzeaBUJrzOP0g=\""
+          "Value": "\"2616qOfIjT1p9GWHXmVBPkwXmxXMIZefVA2NWVXgpiU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:16 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9231,19 +9189,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"LgtaFCIeIU6pdEY4htsy5zOhiGVTc3Oa83AZGc0FR1U=\""
+          "Value": "W/\"gxgwWE2cQ4VNUduhz8ADkVP2Mmz1bCkSTGJhyXsO6lY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LgtaFCIeIU6pdEY4htsy5zOhiGVTc3Oa83AZGc0FR1U="
+          "Value": "sha256-gxgwWE2cQ4VNUduhz8ADkVP2Mmz1bCkSTGJhyXsO6lY="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-67565s8033.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\m6jxu6bbed-386se7s05g.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9252,7 +9210,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8797"
+          "Value": "8800"
         },
         {
           "Name": "Content-Type",
@@ -9260,11 +9218,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hUYSiWts/13FUbW07Es3hU2dQhvlSsYzeaBUJrzOP0g=\""
+          "Value": "\"2616qOfIjT1p9GWHXmVBPkwXmxXMIZefVA2NWVXgpiU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:16 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9282,7 +9240,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hUYSiWts/13FUbW07Es3hU2dQhvlSsYzeaBUJrzOP0g="
+          "Value": "sha256-2616qOfIjT1p9GWHXmVBPkwXmxXMIZefVA2NWVXgpiU="
         }
       ]
     },
@@ -37245,7 +37203,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "38228"
+          "Value": "37140"
         },
         {
           "Name": "Content-Type",
@@ -37253,11 +37211,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IBDbcc+m6HA8zP5xKkb+B5V/XjUY972aeCrrY84rqnI=\""
+          "Value": "\"fHBXanRfZvRPnpw/R5Zl0mbjbYRJCvZYia5WeNDFlv0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:08:30 GMT"
+          "Value": "Fri, 21 Feb 2025 11:37:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37267,18 +37225,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IBDbcc+m6HA8zP5xKkb+B5V/XjUY972aeCrrY84rqnI="
+          "Value": "sha256-fHBXanRfZvRPnpw/R5Zl0mbjbYRJCvZYia5WeNDFlv0="
         }
       ]
     },
     {
       "Route": "_framework/weather.pdb",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-82dgebdfen.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-od5t0o15xj.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000033910950"
+          "Quality": "0.000033914400"
         }
       ],
       "ResponseHeaders": [
@@ -37288,15 +37246,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29488"
+          "Value": "29485"
         },
         {
           "Name": "ETag",
-          "Value": "\"nDj3FY5Wt2tURBtPPYsGlgx+aa/GIqrPqBAlb0iK5uc=\""
+          "Value": "\"GEDhqP5I/5cDs7KdA/WJUd5vsmcVJJbHclLbhLig0V0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:15 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37316,19 +37274,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"IBDbcc+m6HA8zP5xKkb+B5V/XjUY972aeCrrY84rqnI=\""
+          "Value": "W/\"fHBXanRfZvRPnpw/R5Zl0mbjbYRJCvZYia5WeNDFlv0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IBDbcc+m6HA8zP5xKkb+B5V/XjUY972aeCrrY84rqnI="
+          "Value": "sha256-fHBXanRfZvRPnpw/R5Zl0mbjbYRJCvZYia5WeNDFlv0="
         }
       ]
     },
     {
       "Route": "_framework/weather.pdb.gz",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-82dgebdfen.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\nyemiuuyr6-od5t0o15xj.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -37337,7 +37295,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29488"
+          "Value": "29485"
         },
         {
           "Name": "Content-Type",
@@ -37345,11 +37303,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"nDj3FY5Wt2tURBtPPYsGlgx+aa/GIqrPqBAlb0iK5uc=\""
+          "Value": "\"GEDhqP5I/5cDs7KdA/WJUd5vsmcVJJbHclLbhLig0V0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:15 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37367,7 +37325,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-nDj3FY5Wt2tURBtPPYsGlgx+aa/GIqrPqBAlb0iK5uc="
+          "Value": "sha256-GEDhqP5I/5cDs7KdA/WJUd5vsmcVJJbHclLbhLig0V0="
         }
       ]
     },
@@ -37382,7 +37340,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "43797"
+          "Value": "38165"
         },
         {
           "Name": "Content-Type",
@@ -37390,11 +37348,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eicw5YVmFHxmqeHJHZzVnhSTYNKPNuFjaSsTU0MfliM=\""
+          "Value": "\"Jn4YfzczLbqHb/qKYuAuNI09g2YsAi9WsrWPBo4Es4Y=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:08:30 GMT"
+          "Value": "Fri, 21 Feb 2025 11:37:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37404,18 +37362,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eicw5YVmFHxmqeHJHZzVnhSTYNKPNuFjaSsTU0MfliM="
+          "Value": "sha256-Jn4YfzczLbqHb/qKYuAuNI09g2YsAi9WsrWPBo4Es4Y="
         }
       ]
     },
     {
       "Route": "_framework/weather.wasm",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-y64tp9rtf6.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-uvuancqopv.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000062877264"
+          "Quality": "0.000063572791"
         }
       ],
       "ResponseHeaders": [
@@ -37425,15 +37383,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15903"
+          "Value": "15729"
         },
         {
           "Name": "ETag",
-          "Value": "\"Hy9Z4RPK/7biXhFWHUGC+zOBGVWnCWPp0VSCYJzv1Ik=\""
+          "Value": "\"wegmoEZYsaZvMSlSRFQ1TQnIQ/AYpFO1OCGBJAnTnAs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:16 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37453,19 +37411,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"eicw5YVmFHxmqeHJHZzVnhSTYNKPNuFjaSsTU0MfliM=\""
+          "Value": "W/\"Jn4YfzczLbqHb/qKYuAuNI09g2YsAi9WsrWPBo4Es4Y=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eicw5YVmFHxmqeHJHZzVnhSTYNKPNuFjaSsTU0MfliM="
+          "Value": "sha256-Jn4YfzczLbqHb/qKYuAuNI09g2YsAi9WsrWPBo4Es4Y="
         }
       ]
     },
     {
       "Route": "_framework/weather.wasm.gz",
-      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-y64tp9rtf6.gz",
+      "AssetFile": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\compressed\\2p63shbdx5-uvuancqopv.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -37474,7 +37432,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15903"
+          "Value": "15729"
         },
         {
           "Name": "Content-Type",
@@ -37482,11 +37440,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Hy9Z4RPK/7biXhFWHUGC+zOBGVWnCWPp0VSCYJzv1Ik=\""
+          "Value": "\"wegmoEZYsaZvMSlSRFQ1TQnIQ/AYpFO1OCGBJAnTnAs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 15:07:16 GMT"
+          "Value": "Fri, 21 Feb 2025 05:02:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37504,7 +37462,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Hy9Z4RPK/7biXhFWHUGC+zOBGVWnCWPp0VSCYJzv1Ik="
+          "Value": "sha256-wegmoEZYsaZvMSlSRFQ1TQnIQ/AYpFO1OCGBJAnTnAs="
         }
       ]
     },
@@ -37656,7 +37614,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3782"
+          "Value": "3908"
         },
         {
           "Name": "Content-Type",
@@ -37664,11 +37622,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JOZWd9XYwDyrwjSB0PVTcc602GisYED21qQUCSMlGtI=\""
+          "Value": "\"soO683ZMx09ebq2W2HwLyibro9138krA6hEYEnfvPlQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
+          "Value": "Fri, 21 Feb 2025 04:43:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37678,12 +37636,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JOZWd9XYwDyrwjSB0PVTcc602GisYED21qQUCSMlGtI="
+          "Value": "sha256-soO683ZMx09ebq2W2HwLyibro9138krA6hEYEnfvPlQ="
         }
       ]
     },
     {
-      "Route": "css/app.swsybuv5hr.css",
+      "Route": "css/app.epioj7q86y.css",
       "AssetFile": "D:\\C# Projects\\weather\\wwwroot\\css\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -37693,7 +37651,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3782"
+          "Value": "3908"
         },
         {
           "Name": "Content-Type",
@@ -37701,11 +37659,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JOZWd9XYwDyrwjSB0PVTcc602GisYED21qQUCSMlGtI=\""
+          "Value": "\"soO683ZMx09ebq2W2HwLyibro9138krA6hEYEnfvPlQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
+          "Value": "Fri, 21 Feb 2025 04:43:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -37715,7 +37673,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "swsybuv5hr"
+          "Value": "epioj7q86y"
         },
         {
           "Name": "label",
@@ -37723,171 +37681,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JOZWd9XYwDyrwjSB0PVTcc602GisYED21qQUCSMlGtI="
-        }
-      ]
-    },
-    {
-      "Route": "css/bootstrap/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162720"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "bpk8xqwxhs"
-        },
-        {
-          "Name": "label",
-          "Value": "css/bootstrap/bootstrap.min.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/bootstrap/bootstrap.min.css",
-      "AssetFile": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162720"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "449111"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8inm30yfxf"
-        },
-        {
-          "Name": "label",
-          "Value": "css/bootstrap/bootstrap.min.css.map"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
-        }
-      ]
-    },
-    {
-      "Route": "css/bootstrap/bootstrap.min.css.map",
-      "AssetFile": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "449111"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 08:38:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+          "Value": "sha256-soO683ZMx09ebq2W2HwLyibro9138krA6hEYEnfvPlQ="
         }
       ]
     },

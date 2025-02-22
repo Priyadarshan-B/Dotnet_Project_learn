@@ -1,15 +1,21 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.center-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+}
 
-h1:focus {
+/* h1:focus {
     outline: none;
 }
 
 a, .btn-link {
     color: #0071c1;
-}
-
+} */
+/* 
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
@@ -100,4 +106,4 @@ a, .btn-link {
 
 code {
     color: #c02d76;
-}
+} */

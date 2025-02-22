@@ -5,9 +5,9 @@
 @inject NavigationManager Navigation
 @using System.Text.Json.Serialization
 
-<MudGrid Justify="Justify.Center" AlignItems="AlignItems.Center">
+<MudGrid Justify="Justify.Center" Class="center-grid" Style="align-items: center;">
     <MudItem xs="12" sm="8" md="6" lg="4">
-        <MudPaper Elevation="3" Outlined="true" Class="pa-10">
+        <MudPaper Elevation="2" Class="pa-10">
             <MudText Typo="Typo.h5" Class="mud-text-center mb-4">Login</MudText>
             <MudForm Model="loginModel" onSubmit="HandleLogin">
                 <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"

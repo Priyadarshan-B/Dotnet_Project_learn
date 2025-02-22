@@ -1049,6 +1049,6 @@ D:\C# Projects\weather\obj\Debug\net8.0\compressed\mzs180eu58-5z90s42y4u.gz
 D:\C# Projects\weather\obj\Debug\net8.0\compressed\16ngau1ep8-47li9wjxov.gz
 D:\C# Projects\weather\obj\Debug\net8.0\compressed\c18yiqwuv2-vtiktprph9.gz
 D:\C# Projects\weather\obj\Debug\net8.0\weather.sourcelink.json
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\2p63shbdx5-y64tp9rtf6.gz
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\nyemiuuyr6-82dgebdfen.gz
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\m6jxu6bbed-67565s8033.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\2p63shbdx5-uvuancqopv.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\nyemiuuyr6-od5t0o15xj.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\m6jxu6bbed-386se7s05g.gz

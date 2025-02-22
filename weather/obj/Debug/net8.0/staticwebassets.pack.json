@@ -13,14 +13,6 @@
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
-    },
-    {
-      "Id": "D:\\C# Projects\\weather\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
-      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
-    },
-    {
       "Id": "D:\\C# Projects\\weather\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
