@@ -3,7 +3,7 @@
 @inject HttpClient Http
 
 <MudContainer MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
-    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.DeepPurple.Lighten5};")" Color="Color.Primary">
+    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")" Color="Color.Primary">
         <MudText Typo="Typo.h4" Align="Align.Center">Weather Forecast</MudText>
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
@@ -24,7 +24,9 @@
                 <MudCard Class="mt-4">
                     <MudCardContent>
                         <MudText Typo="Typo.h4" Align="Align.Center">@weatherData.Name</MudText>
+                        <MudCard class="pa-2 cursor-pointer" Style="@($"background-color:{Colors.Indigo.Lighten5};")" Width="300px" >
                         <MudText Typo="Typo.h5">@weatherData.Weather[0].Description.ToUpper()</MudText>
+                        </MudCard>
                         <MudText Typo="Typo.h6">Temperature: @weatherData.Main.Temp °C</MudText>
                         <MudText Typo="Typo.h6">Humidity: @weatherData.Main.Humidity%</MudText>
                         <MudText Typo="Typo.h6">Wind Speed: @weatherData.Wind.Speed m/s</MudText>

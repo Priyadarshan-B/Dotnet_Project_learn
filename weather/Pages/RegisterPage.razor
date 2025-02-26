@@ -3,40 +3,41 @@
 @inject HttpClient Http
 @inject NavigationManager Navigation
 
-<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="login-container">
-    <MudPaper Elevation="3" Class="pa-10 ma-2">
-        <MudText Typo="Typo.h5" Class="mud-text-center mud-mb-4">Register</MudText>
 
-        <MudForm Model="registerModel" >
-            <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true" @bind-Value="registerModel.Username" />
-
-            @* <MudTextField Label="Password" Required="true" @bind-Value="registerModel.Password" InputType="InputType.Password" /> *@
-            <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense"
-            Required="true" @bind-Value="registerModel.Password"
-            InputType="@PasswordInput" Adornment="Adornment.End"
-            AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
-            </MudTextField>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary"  OnClick="@(()=>HandleRegister())" type="submit" Disabled="isLoading">
-                @if (isLoading)
-                {
-                    <MudProgressCircular Size="Size.Medium" Color="Color.Secondary" />
-                }
-                else
-                {
-                    <span>Register</span>
-                }
-            </MudButton>
-        </MudForm>
-
-@*         <MudAlert Severity="Severity.Success" Class="mud-mt-4" visible="!string.IsNullOrEmpty(successMessage)"> *@
-@*             @successMessage *@
-@* </MudAlert> *@
-
-@* <MudAlert Severity="Severity.Error" Class="mud-mt-4" visible="!string.IsNullOrEmpty(errorMessage)"> *@
-@*             @errorMessage *@
-@* </MudAlert> *@
-    </MudPaper>
-</MudContainer>
+<MudGrid Justify="Justify.Center" Class="center-grid" Style="align-items: center;">
+    <MudItem xs="12" sm="8" md="6" lg="6">
+        <MudPaper Elevation="2" Class="pa-10">
+            <MudText Typo="Typo.h5" Class="mud-text-center mb-4">Register</MudText>
+            <MudForm Model="registerModel" >
+                <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="registerModel.Username"></MudTextField>
+                <br />
+                <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="registerModel.Password" InputType="@PasswordInput" Adornment="Adornment.End"
+                    AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
+                </MudTextField>
+                <br>
+                <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => HandleRegister())" type="Submit"
+                    Disabled="isLoading" FullWidth="true">
+                    @if (isLoading)
+                    {
+                        <MudProgressCircular Size="Size.Small" Color="Color.Secondary" />
+                    }
+                    else
+                    {
+                        <span>Register</span>
+                    }
+                </MudButton>
+            </MudForm>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <MudAlert Severity="Severity.Error" Class="mt-4" Visible="@( !string.IsNullOrEmpty(errorMessage) )">
+                    @errorMessage
+                </MudAlert>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
 
 @code {
     private RegisterModel registerModel = new();

@@ -7,14 +7,14 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-@if (Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase))
+@if (Navigation.Uri.Contains("login" , StringComparison.OrdinalIgnoreCase))
 {
     @Body
 }
 else
 {
     <MudLayout>
-        <MudAppBar Elevation="1" Style="@($" background:{Colors.DeepPurple.Lighten3};")">
+        <MudAppBar Elevation="1" Style="@($"background:{Colors.Indigo.Lighten2};")">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
             <MudSpacer />
             <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
@@ -28,7 +28,7 @@ else
             </MudDrawerHeader>
             <MudNavMenu Rounded="true" Margin="Margin.Dense" Color="Color.Primary" Class="pa-2">
                 <MudNavLink  Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
-                <MudNavGroup Title="Login" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+                <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="false">
                     <MudNavLink Match="NavLinkMatch.Prefix" Href="/register" Icon="@Icons.Material.Filled.People" >Register</MudNavLink>
                     <MudNavLink Match="NavLinkMatch.Prefix" Href="/login" Icon="@Icons.Material.Filled.Security" >Logout</MudNavLink>
                 </MudNavGroup>
