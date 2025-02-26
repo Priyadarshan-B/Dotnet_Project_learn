@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "D:\\C# Projects\\weather\\obj\\Debug\\net8.0\\scopedcss\\bundle\\weather.styles.css",
-      "PackagePath": "staticwebassets\\weather.styles.css"
-    },
-    {
       "Id": "D:\\C# Projects\\weather\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },

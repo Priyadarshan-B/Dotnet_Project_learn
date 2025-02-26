@@ -1,13 +1,15 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
 @inject NavigationManager Navigation
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+
 
 <MudThemeProvider />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-@if (Navigation.Uri.Contains("login" , StringComparison.OrdinalIgnoreCase))
+@if (Navigation.Uri.Contains("login" , StringComparison.OrdinalIgnoreCase) || (Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase)))
 {
     @Body
 }
@@ -15,7 +17,16 @@ else
 {
     <MudLayout>
         <MudAppBar Elevation="1" Style="@($"background:{Colors.Indigo.Lighten2};")">
+         
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+               @if (userClaims == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p><strong>Welcome @userClaims.Username.ToUpper()</strong> </p>
+}
             <MudSpacer />
             <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
         </MudAppBar>
@@ -45,9 +56,69 @@ else
 
 @code {
     private bool _drawerOpen = true;
+    private UserClaims? userClaims;
+    private System.Threading.Timer? _timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserClaimsAsync();
+
+        _timer = new System.Threading.Timer(async _ =>
+        {
+            await InvokeAsync(async () =>
+            {
+                await LoadUserClaimsAsync();
+                StateHasChanged();
+            });
+        }, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+    }
+
+    private async Task LoadUserClaimsAsync()
+    {
+        var token = await localStorage.GetItemAsync<string>("D!");
+        if (!string.IsNullOrEmpty(token))
+        {
+            try
+            {
+                var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                var jwtToken = handler.ReadJwtToken(token);
+
+                var username = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Name)?.Value;
+                var email = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
+
+                if (userClaims == null || userClaims.Username != username || userClaims.Email != email)
+                {
+                    userClaims = new UserClaims
+                    {
+                        Username = username ?? "Not found",
+                        Email = email ?? "Not found"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing token: {ex.Message}");
+            }
+        }
+        else
+        {
+            userClaims = null;
+        }
+    }
 
     private void ToggleDrawer()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+
+    public class UserClaims
+    {
+        public string? Username { get; set; }
+        public string? Email { get; set; }
     }
 }

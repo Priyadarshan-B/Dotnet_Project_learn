@@ -13,8 +13,17 @@ namespace sample_api.Models
         [Required]
         [StringLength(50)]
         public string Username { get; set; } = string.Empty;
+
         [Required]
-        [StringLength (255)]
+        [StringLength(255)]
+        public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(255)]
         public string Password { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(12)]
+        public string Phone { get; set; } = string.Empty;
     }
 }

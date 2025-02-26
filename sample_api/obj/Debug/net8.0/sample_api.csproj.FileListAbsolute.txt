@@ -152,3 +152,9 @@ D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.pdb
 D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.genruntimeconfig.cache
 D:\C# Projects\sample_api\obj\Debug\net8.0\ref\sample_api.dll
 D:\C# Projects\sample_api\obj\Debug\net8.0\sample_api.sourcelink.json
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\C# Projects\sample_api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using sample_api.Models;
 using sample_api.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace sample_api.Controllers
 {
@@ -9,6 +13,9 @@ namespace sample_api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthServices _authServices;
+        private const string JwtSecretKey = "key is enough secret for 16-bytes";
+        private const string Issuer = "http://localhost";
+        private const string Audience = "http://localhost";
 
         public AuthController(AuthServices authServices)
         {
@@ -20,13 +27,29 @@ namespace sample_api.Controllers
         {
             try
             {
-                bool isAuthenticated = _authServices.Authenticate(request.Username, request.Password);
                 if (request == null || string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
                     return BadRequest(new { status = 400, message = "Invalid request" });
-                if (!isAuthenticated)
-                    return Unauthorized(new { status = 401, message = "Invalid credentials" });
 
-                return Ok(new { status = 200, message = "Login successful" });
+                var UserDTO = _authServices.Authenticate(request.Username, request.Password);
+                if (UserDTO == null)
+                    return Unauthorized(new { status = 401, message = "Invalid credentials" });
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.Name, UserDTO.Username),
+                    new Claim(ClaimTypes.Email, UserDTO.Email)
+                };
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSecretKey));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                var token = new JwtSecurityToken(
+                   issuer: Issuer,
+                   audience: Audience,
+                   claims: claims,
+                   expires: DateTime.Now.AddHours(24),
+                   signingCredentials: creds
+               );
+                var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
+                return Ok(new { status = 200, message = "Login successful", token = jwtToken });
             }
             catch (Exception ex)
             {

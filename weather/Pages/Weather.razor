@@ -2,6 +2,7 @@
 @using MudBlazor
 @inject HttpClient Http
 
+
 <MudContainer MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
     <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")" Color="Color.Primary">
         <MudText Typo="Typo.h4" Align="Align.Center">Weather Forecast</MudText>
@@ -79,4 +80,6 @@
     public class MainData { public double Temp { get; set; } public int Humidity { get; set; } }
     public class WindData { public double Speed { get; set; } }
     public class WeatherDescription { public string Description { get; set; } = ""; }
+
+    
 }

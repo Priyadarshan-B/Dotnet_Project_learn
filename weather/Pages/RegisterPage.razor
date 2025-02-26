@@ -12,11 +12,17 @@
                 <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
                     @bind-Value="registerModel.Username"></MudTextField>
                 <br />
+                <MudTextField Label="Email" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="registerModel.Email"></MudTextField>
+                <br />
                 <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
                     @bind-Value="registerModel.Password" InputType="@PasswordInput" Adornment="Adornment.End"
                     AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick">
                 </MudTextField>
                 <br>
+                <MudTextField Label="Phone" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="registerModel.Phone"></MudTextField>
+                <br />
                 <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => HandleRegister())" type="Submit"
                     Disabled="isLoading" FullWidth="true">
                     @if (isLoading)
@@ -93,5 +99,8 @@
     {
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public string Email {get;set;} = string.Empty;
+        public string Phone {get;set;} = string.Empty;
+
     }
 }

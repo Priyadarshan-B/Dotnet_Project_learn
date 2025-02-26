@@ -7,3 +7,7 @@ html, body {
     align-items: center;
     height: 92vh;
 }
+
+body{
+    background-color: aliceblue;
+}

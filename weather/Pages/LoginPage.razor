@@ -5,6 +5,9 @@
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @using System.Text.Json.Serialization
+@using System.Text.Json
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+
 
 <MudGrid Justify="Justify.Center" Class="center-grid" Style="align-items: center;">
     <MudItem xs="12" sm="8" md="6" lg="4">
@@ -67,23 +70,43 @@
             var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/login", loginModel);
             if (response.IsSuccessStatusCode)
             {
+                var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (loginResponse?.Token != null)
+                {
+                   await localStorage.SetItemAsync("D!", loginResponse.Token);
                 Navigation.NavigateTo("/weather");
+
+                }
             }
             else
             {
                 errorMessage = "Invalid username or password";
             }
         }
-        catch (Exception)
+         catch (Exception ex)
         {
-            errorMessage = "An error occurred";
+            errorMessage = $"An error occurred: {ex.Message}";
         }
-        isLoading = false;
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     public class LoginModel
     {
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
+    }
+     public class LoginResponse
+    {
+        public int Status { get; set; }
+        public string Message { get; set; } = "";
+        public string? Token { get; set; }
+    }
+    public class UserDto
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
     }
 }
