@@ -9,7 +9,7 @@
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
 
-        <MudButton Color="Color.Primary" Class="mt-4" OnClick="GetWeather" Disabled="isLoading">
+        <MudButton Color="Color.Primary" Class="mt-4 d-flex flex-row" OnClick="GetWeather" Disabled="isLoading">
             @if (isLoading)
             {
                     <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
@@ -18,6 +18,10 @@
             {
                     <span>Get Weather Report</span>
             }
+        </MudButton>
+
+         <MudButton Color="Color.Primary" Variant="Variant.Filled">
+            Add Favorite City
         </MudButton>
 
         @if (weatherData != null)
@@ -42,6 +46,9 @@
        
     </MudPaper>
 </MudContainer>
+
+       
+
 
 @code {
     private string City { get; set; } = "London"; 

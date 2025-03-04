@@ -35,6 +35,7 @@ namespace sample_api.Controllers
                     return Unauthorized(new { status = 401, message = "Invalid credentials" });
                 var claims = new[]
                 {
+                    new Claim(ClaimTypes.NameIdentifier, UserDTO.Id),
                     new Claim(ClaimTypes.Name, UserDTO.Username),
                     new Claim(ClaimTypes.Email, UserDTO.Email)
                 };
@@ -49,7 +50,7 @@ namespace sample_api.Controllers
                    signingCredentials: creds
                );
                 var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-                return Ok(new { status = 200, message = "Login successful", token = jwtToken });
+                return Ok(new { status = 200, message = "Login successful", UserDTO, token = jwtToken });
             }
             catch (Exception ex)
             {

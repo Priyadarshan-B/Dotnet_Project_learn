@@ -9,11 +9,11 @@ namespace sample_api.Models
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; } 
-    [Required]
-    [StringLength(255)]
-    public string User { get; set; }= string.Empty;
 
-    public List<string> Cities { get; set; }
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string UserId { get; set; } = string.Empty;
+
+    public List<string> Cities { get; set; } = new();
 }
 
 }

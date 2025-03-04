@@ -4,6 +4,7 @@
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 
+
 <MudThemeProvider />
 <MudPopoverProvider />
 <MudDialogProvider />
@@ -83,6 +84,7 @@ else
                 var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
                 var jwtToken = handler.ReadJwtToken(token);
 
+                var userid = jwtToken.Claims.FirstOrDefault(c=> c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
                 var username = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Name)?.Value;
                 var email = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
 
@@ -90,6 +92,7 @@ else
                 {
                     userClaims = new UserClaims
                     {
+                        Id = userid ?? "Not Found",
                         Username = username ?? "Not found",
                         Email = email ?? "Not found"
                     };
@@ -118,6 +121,7 @@ else
 
     public class UserClaims
     {
+        public string? Id {get;set;}
         public string? Username { get; set; }
         public string? Email { get; set; }
     }

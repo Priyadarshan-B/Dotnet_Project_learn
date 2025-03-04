@@ -15,7 +15,7 @@ namespace sample_api.Controllers{
         [HttpPost]
         public async Task<IActionResult> CreateOrUpdateFavorites([FromBody] UserFavorite userFavorite)
         {
-            if (userFavorite == null || string.IsNullOrEmpty(userFavorite.User))
+            if (userFavorite == null || string.IsNullOrEmpty(userFavorite.UserId))
             {
                 return BadRequest("Invalid user favorite data.");
             }
@@ -25,14 +25,14 @@ namespace sample_api.Controllers{
         }
 
          [HttpGet("{user}")]
-        public async Task<IActionResult> GetFavorites(string user)
+        public async Task<IActionResult> GetFavorites(string userId)
         {
-            if (string.IsNullOrEmpty(user))
+            if (string.IsNullOrEmpty(userId))
             {
                 return BadRequest("UserId is required.");
             }
 
-            var cities = await _favoritesService.GetFavoritesByUserId(user);
+            var cities = await _favoritesService.GetFavoritesByUserId(userId);
             if (cities == null)
             {
                 return NotFound("User not found.");

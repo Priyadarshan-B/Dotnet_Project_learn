@@ -28,6 +28,7 @@ namespace sample_api.Services
         }
         public class UserDTO
         {
+            public string Id {get;set;} = string.Empty;
             public string Username { get; set; } = string.Empty;
             public string Email { get; set; } = string.Empty;
 
@@ -42,6 +43,7 @@ namespace sample_api.Services
             }
             return new UserDTO
             {
+                Id = user.Id,
                 Username = user.Username,
                 Email = user.Email
             };
