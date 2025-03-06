@@ -1,10 +1,13 @@
 ﻿@page "/weather"
 @using MudBlazor
 @inject HttpClient Http
+@inject GlobalState GlobalState
+@inject ISnackbar Snackbar
 
 
 <MudContainer MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
-    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")" Color="Color.Primary">
+    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")"
+        Color="Color.Primary">
         <MudText Typo="Typo.h4" Align="Align.Center">Weather Forecast</MudText>
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
@@ -12,49 +15,103 @@
         <MudButton Color="Color.Primary" Class="mt-4 d-flex flex-row" OnClick="GetWeather" Disabled="isLoading">
             @if (isLoading)
             {
-                    <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
+                <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
             }
             else
             {
-                    <span>Get Weather Report</span>
+                <span>Get Weather Report</span>
             }
         </MudButton>
-
-         <MudButton Color="Color.Primary" Variant="Variant.Filled">
+        <MudDivider Class="ma-4" />
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="@OpenDialog">
             Add Favorite City
         </MudButton>
+        <MudPopover Open="@_open" AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.CenterCenter">
+            <div class="pa-10">
+                <MudSelect class="pb-4" MultiSelection="true" @bind-Value="_value" @bind-SelectedValues="_options"
+                    Variant="Variant.Outlined">
+                    @foreach (var state in _states)
+                    {
+                        <MudSelectItem T="string" Value="@state">@state</MudSelectItem>
+                    }
+                </MudSelect>
+
+                <MudStack Spacing="2">
+                    <MudButton Variant="Variant.Outlined" Color="Color.Success" OnClick="@AddFavoriteCity">Submit
+                    </MudButton>
+                    
+                    <MudButton Variant="Variant.Outlined" Color="Color.Error" OnClick="@OpenDialog">Close
+                    </MudButton>
+                </MudStack>
+
+            </div>
+        </MudPopover>
 
         @if (weatherData != null)
         {
-                <MudCard Class="mt-4">
-                    <MudCardContent>
-                        <MudText Typo="Typo.h4" Align="Align.Center">@weatherData.Name</MudText>
-                        <MudCard class="pa-2 cursor-pointer" Style="@($"background-color:{Colors.Indigo.Lighten5};")" Width="300px" >
+            <MudCard Class="mt-4">
+                <MudCardContent>
+                    <MudText Typo="Typo.h4" Align="Align.Center">@weatherData.Name</MudText>
+                    <MudCard class="pa-2 cursor-pointer" Style="@($"background-color:{Colors.Indigo.Lighten5};")"
+                        Width="300px">
                         <MudText Typo="Typo.h5">@weatherData.Weather[0].Description.ToUpper()</MudText>
-                        </MudCard>
-                        <MudText Typo="Typo.h6">Temperature: @weatherData.Main.Temp °C</MudText>
-                        <MudText Typo="Typo.h6">Humidity: @weatherData.Main.Humidity%</MudText>
-                        <MudText Typo="Typo.h6">Wind Speed: @weatherData.Wind.Speed m/s</MudText>
-                    </MudCardContent>
-                </MudCard>
+                    </MudCard>
+                    <MudText Typo="Typo.h6">Temperature: @weatherData.Main.Temp °C</MudText>
+                    <MudText Typo="Typo.h6">Humidity: @weatherData.Main.Humidity%</MudText>
+                    <MudText Typo="Typo.h6">Wind Speed: @weatherData.Wind.Speed m/s</MudText>
+                </MudCardContent>
+            </MudCard>
         }
-        @if(!string.IsNullOrEmpty(errorMessage)){
-             <MudAlert Severity="Severity.Error" Class="mt-4" visible="@(errorMessage != null)"> 
-            @errorMessage
-        </MudAlert>
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <MudAlert Severity="Severity.Error" Class="mt-4" Visible="@(errorMessage != null)">
+                @errorMessage
+            </MudAlert>
         }
-       
+
     </MudPaper>
 </MudContainer>
 
-       
+
 
 
 @code {
-    private string City { get; set; } = "London"; 
+    private string City { get; set; } = "London";
     private bool isLoading = false;
     private string? errorMessage = null;
     private WeatherResponse? weatherData;
+
+    public bool _open;
+    public void OpenDialog()
+    {
+        if (_open)
+        {
+            _open = false;
+        }
+        else
+        {
+            _open = true;
+        }
+    }
+    private string _value = "Nothing selected";
+    private IEnumerable<string> _options = new HashSet<string> { "Alaska" };
+    private readonly string[] _states =
+    [
+    "Alabama", "Alaska", "American Samoa", "Arizona",
+"Arkansas", "California", "Colorado", "Connecticut",
+"Delaware", "District of Columbia", "Federated States of Micronesia",
+"Florida", "Georgia", "Guam", "Hawaii", "Idaho",
+"Illinois", "India", "Iowa", "Kansas", "Kentucky",
+"Louisiana", "Maine", "Marshall Islands", "Maryland",
+"Massachusetts", "Michigan", "Minnesota", "Mississippi",
+"Missouri", "Montana", "Nebraska", "Nevada",
+"New Hampshire", "New Jersey", "New Mexico", "New York",
+"North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio",
+"Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico",
+"Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+"Texas", "Utah", "Vermont", "Virgin Island", "Virginia",
+"Washington", "West Virginia", "Wisconsin", "Wyoming"
+    ];
 
     private async Task GetWeather()
     {
@@ -84,9 +141,39 @@
         public List<WeatherDescription> Weather { get; set; } = new();
     }
 
+    private async Task AddFavoriteCity()
+    {
+        try
+        {
+            var userid = @GlobalState.UserId;
+            var body = new
+            {
+                userId = userid,
+                cities = _options
+            };
+            var response = await Http.PostAsJsonAsync("http://localhost:5029/api/fav", body);
+            if (response.IsSuccessStatusCode)
+            {
+                @* errorMessage = "Favorite city added successfully."; *@
+                Snackbar.Add($"Success {"Favorite city added successfully"}", Severity.Success);
+
+            }
+            else
+            {
+                @* errorMessage = "Failed to add favorite city."; *@
+                Snackbar.Add($"Error {"Failed to add favorite city."}", Severity.Error);
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "Failed to add favorite city.";
+        }
+    }
+
+
     public class MainData { public double Temp { get; set; } public int Humidity { get; set; } }
     public class WindData { public double Speed { get; set; } }
     public class WeatherDescription { public string Description { get; set; } = ""; }
 
-    
+
 }

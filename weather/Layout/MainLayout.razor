@@ -2,15 +2,15 @@
 @using MudBlazor
 @inject NavigationManager Navigation
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
-
-
+@inject GlobalState GlobalState
 
 <MudThemeProvider />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-@if (Navigation.Uri.Contains("login" , StringComparison.OrdinalIgnoreCase) || (Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase)))
+@if (Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase) || 
+     Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase))
 {
     @Body
 }
@@ -18,16 +18,17 @@ else
 {
     <MudLayout>
         <MudAppBar Elevation="1" Style="@($"background:{Colors.Indigo.Lighten2};")">
-         
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
-               @if (userClaims == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <p><strong>Welcome @userClaims.Username.ToUpper()</strong> </p>
-}
+
+            @if (string.IsNullOrEmpty(GlobalState.UserName))
+            {
+                <p>Loading...</p>
+            }
+            else
+            {
+                <p><strong>Welcome @GlobalState.UserName.ToUpper()</strong></p>
+            }
+
             <MudSpacer />
             <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
         </MudAppBar>
@@ -39,10 +40,10 @@ else
                 <MudDivider Class="my-2" />
             </MudDrawerHeader>
             <MudNavMenu Rounded="true" Margin="Margin.Dense" Color="Color.Primary" Class="pa-2">
-                <MudNavLink  Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
+                <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
                 <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="false">
-                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/register" Icon="@Icons.Material.Filled.People" >Register</MudNavLink>
-                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/login" Icon="@Icons.Material.Filled.Security" >Logout</MudNavLink>
+                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/register" Icon="@Icons.Material.Filled.People">Register</MudNavLink>
+                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/login" Icon="@Icons.Material.Filled.Security">Logout</MudNavLink>
                 </MudNavGroup>
             </MudNavMenu>
         </MudDrawer>
@@ -57,72 +58,14 @@ else
 
 @code {
     private bool _drawerOpen = true;
-    private UserClaims? userClaims;
-    private System.Threading.Timer? _timer;
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadUserClaimsAsync();
-
-        _timer = new System.Threading.Timer(async _ =>
-        {
-            await InvokeAsync(async () =>
-            {
-                await LoadUserClaimsAsync();
-                StateHasChanged();
-            });
-        }, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
-    }
-
-    private async Task LoadUserClaimsAsync()
-    {
-        var token = await localStorage.GetItemAsync<string>("D!");
-        if (!string.IsNullOrEmpty(token))
-        {
-            try
-            {
-                var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-                var jwtToken = handler.ReadJwtToken(token);
-
-                var userid = jwtToken.Claims.FirstOrDefault(c=> c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                var username = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Name)?.Value;
-                var email = jwtToken.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
-
-                if (userClaims == null || userClaims.Username != username || userClaims.Email != email)
-                {
-                    userClaims = new UserClaims
-                    {
-                        Id = userid ?? "Not Found",
-                        Username = username ?? "Not found",
-                        Email = email ?? "Not found"
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error parsing token: {ex.Message}");
-            }
-        }
-        else
-        {
-            userClaims = null;
-        }
+        await GlobalState.LoadUserData();
     }
 
     private void ToggleDrawer()
     {
         _drawerOpen = !_drawerOpen;
-    }
-
-    public void Dispose()
-    {
-        _timer?.Dispose();
-    }
-
-    public class UserClaims
-    {
-        public string? Id {get;set;}
-        public string? Username { get; set; }
-        public string? Email { get; set; }
     }
 }

@@ -8,7 +8,7 @@ public static class EncryptionHelper
     public static string EncryptString(string plainText, string keyString)
     {
         var key = Encoding.UTF8.GetBytes(keyString.PadRight(32, '0').Substring(0, 32));
-#pragma warning disable CA1416 // Validate platform compatibility
+#pragma warning disable CA1416 
         using (Aes aesAlg = Aes.Create())
         {
             aesAlg.Key = key;
@@ -28,6 +28,6 @@ public static class EncryptionHelper
                 return Convert.ToBase64String(encrypted);
             }
         }
-#pragma warning restore CA1416 // Validate platform compatibility
+#pragma warning restore CA1416 
     }
 }
