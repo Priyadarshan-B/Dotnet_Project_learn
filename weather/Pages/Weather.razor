@@ -12,7 +12,7 @@
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
 
-        <MudButton Color="Color.Primary" Class="mt-4 d-flex flex-row" OnClick="GetWeather" Disabled="isLoading">
+        <MudButton Color="Color.Primary" Class="mt-4 d-flex flex-row" OnClick="() => GetWeather(City)" Disabled="isLoading">
             @if (isLoading)
             {
                 <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
@@ -23,7 +23,7 @@
             }
         </MudButton>
         <MudDivider Class="ma-4" />
-        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="@OpenDialog">
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="@OpenDialog" Size="Size.Small">
             Add Favorite City
         </MudButton>
         <MudPopover Open="@_open" AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.CenterCenter">
@@ -71,6 +71,28 @@
 
     </MudPaper>
 </MudContainer>
+<MudContainer  MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
+    <MudPaper  Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")"
+        Color="Color.Primary">
+        <MudText Typo="Typo.h5" Align="Align.Center">Favourites Cities for @GlobalState.UserName...</MudText>
+        
+        <MudList T="string">
+            @if (favoriteCities.Count > 0)
+            {
+                @foreach (var city in favoriteCities)
+                {
+                        <MudChip T="string" Color="Color.Primary" Variant="Variant.Text" OnClick="() => GetWeather(city)">@city</MudChip>
+                }
+            }
+            else
+            {
+                <MudListItem>
+                    <MudText Typo="Typo.body1" Color="Color.Primary">No favorite cities added.</MudText>
+                </MudListItem>
+            }
+        </MudList>
+    </MudPaper>
+</MudContainer>
 
 
 
@@ -80,6 +102,8 @@
     private bool isLoading = false;
     private string? errorMessage = null;
     private WeatherResponse? weatherData;
+private List<string> favoriteCities = new();
+
 
     public bool _open;
     public void OpenDialog()
@@ -94,34 +118,30 @@
         }
     }
     private string _value = "Nothing selected";
-    private IEnumerable<string> _options = new HashSet<string> { "Alaska" };
+    private IEnumerable<string> _options = new HashSet<string> { "Tirupur" };
     private readonly string[] _states =
     [
-    "Alabama", "Alaska", "American Samoa", "Arizona",
-"Arkansas", "California", "Colorado", "Connecticut",
-"Delaware", "District of Columbia", "Federated States of Micronesia",
-"Florida", "Georgia", "Guam", "Hawaii", "Idaho",
-"Illinois", "India", "Iowa", "Kansas", "Kentucky",
-"Louisiana", "Maine", "Marshall Islands", "Maryland",
-"Massachusetts", "Michigan", "Minnesota", "Mississippi",
-"Missouri", "Montana", "Nebraska", "Nevada",
-"New Hampshire", "New Jersey", "New Mexico", "New York",
-"North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio",
-"Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico",
-"Rhode Island", "South Carolina", "South Dakota", "Tennessee",
-"Texas", "Utah", "Vermont", "Virgin Island", "Virginia",
-"Washington", "West Virginia", "Wisconsin", "Wyoming"
-    ];
+    "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem",
+    "Erode", "Tirunelveli", "Vellore", "Thoothukudi", "Dindigul",
+    "Thanjavur", "Ranipet", "Sivakasi", "Kanchipuram", "Nagercoil",
+    "Kumbakonam", "Karur", "Udhagamandalam (Ooty)", "Cuddalore",
+    "Hosur", "Ambur", "Pudukkottai", "Nagapattinam", "Tiruvannamalai",
+    "Ariyalur", "Pollachi", "Karaikudi", "Namakkal", "Dharmapuri",
+    "Tenkasi", "Perambalur", "Theni", "Mayiladuthurai", "Villupuram",
+    "Krishnagiri", "Tirupattur","Tirupur"
+];
 
-    private async Task GetWeather()
+
+    private async Task GetWeather(string? selectedCity= null)
     {
         isLoading = true;
         errorMessage = null;
 
         try
         {
+            string cityToFetch = selectedCity ?? City;
             string apiKey = "89356047c4e56dd8d6f6ed9836260769";
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={City}&appid={apiKey}&units=metric";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={cityToFetch}&appid={apiKey}&units=metric";
 
             weatherData = await Http.GetFromJsonAsync<WeatherResponse>(url);
         }
@@ -155,12 +175,14 @@
             if (response.IsSuccessStatusCode)
             {
                 @* errorMessage = "Favorite city added successfully."; *@
+                                await  FetchFavoriteCities();
                 Snackbar.Add($"Success {"Favorite city added successfully"}", Severity.Success);
 
             }
             else
             {
                 @* errorMessage = "Failed to add favorite city."; *@
+                await  FetchFavoriteCities();
                 Snackbar.Add($"Error {"Failed to add favorite city."}", Severity.Error);
             }
         }
@@ -170,6 +192,40 @@
         }
     }
 
+    private async Task FetchFavoriteCities()
+    {
+        try
+        {
+           var userid = GlobalState.UserId;
+             Console.WriteLine($"UserID: {userid}");
+            var body = new { UserId = userid };
+            var response = await Http.PostAsJsonAsync($"http://localhost:5029/api/fav/get-favorites",body);
+
+           if (response.IsSuccessStatusCode)
+            {
+            var cities = await response.Content.ReadFromJsonAsync<List<string>>();
+            if (cities != null)
+            {
+                favoriteCities = cities;
+            }
+        }
+        else
+        {
+            errorMessage = "Failed to fetch favorite cities.";
+        }
+        }
+        catch (Exception)
+        {
+            errorMessage = "Failed to fetch favorite cities.";
+        }
+    }
+
+
+ protected override async Task OnInitializedAsync()
+    {
+        await GlobalState.LoadUserData();
+        await FetchFavoriteCities();
+    }
 
     public class MainData { public double Temp { get; set; } public int Humidity { get; set; } }
     public class WindData { public double Speed { get; set; } }

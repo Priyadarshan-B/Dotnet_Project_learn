@@ -1081,6 +1081,6 @@ D:\C# Projects\weather\obj\Debug\net8.0\weather.dll
 D:\C# Projects\weather\obj\Debug\net8.0\refint\weather.dll
 D:\C# Projects\weather\obj\Debug\net8.0\weather.pdb
 D:\C# Projects\weather\obj\Debug\net8.0\ref\weather.dll
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\2p63shbdx5-g3l04gw7q7.gz
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\nyemiuuyr6-vposugo35f.gz
-D:\C# Projects\weather\obj\Debug\net8.0\compressed\m6jxu6bbed-mj6rq3l5h5.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\2p63shbdx5-ogjbn9i7zy.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\nyemiuuyr6-y6gzfr7zzm.gz
+D:\C# Projects\weather\obj\Debug\net8.0\compressed\m6jxu6bbed-7ns4bpphwf.gz

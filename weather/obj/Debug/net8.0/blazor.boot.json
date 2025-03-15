@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "weather",
   "resources": {
-    "hash": "sha256-FIepJor87Yarb8P5MLbha1trcy+RtxrU4Z7rauc4bXo=",
+    "hash": "sha256-1eDBLyh58Q0yo2YrxZO6Z/yt51BlqUqKYB5zMYjD9yU=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-xNQsYHtL1vcbrVTHDZAwJM4WovpoyjsrM2C6FQ8cW1w="
     },
@@ -219,10 +219,10 @@
       "mscorlib.wasm": "sha256-RAf5jgXLg+06C4tJ3CabxAZaVjCN2/+E6fxRjRN8yHk=",
       "netstandard.wasm": "sha256-KCAE8RQwTurP5pGnGF819qf9sK++2O0rXzt6tOjlfi8=",
       "System.Private.CoreLib.wasm": "sha256-LQqLbHgeEX4HONx7GwIxGgmzIXP6n2OPxqnq+/4Tyqk=",
-      "weather.wasm": "sha256-zO7MPmqbih9jxdmvZymybBmqoNDfcSy29CRrZaQp2Bo="
+      "weather.wasm": "sha256-uK28LGPozJi3Uqbh7jZbq3np5IVADAP6HrAdRURnYkE="
     },
     "pdb": {
-      "weather.pdb": "sha256-I8pUKmzT8FU1CPnTsVb55RmBgr9ktRcBfTUH0dX1CNk="
+      "weather.pdb": "sha256-RtjPgefD6QTgePk7EAjcjzEu4ElVekEhUB6kuCb6E3g="
     }
   },
   "cacheBootResources": true,

@@ -24,20 +24,25 @@ namespace sample_api.Controllers{
             return Ok(userFavorite);
         }
 
-         [HttpGet("{user}")]
-        public async Task<IActionResult> GetFavorites(string userId)
+         [HttpPost("get-favorites")]
+        public async Task<IActionResult> GetFavorites([FromBody] UserRequest request)
         {
-            if (string.IsNullOrEmpty(userId))
+            if (request == null || string.IsNullOrEmpty(request.UserId))
             {
                 return BadRequest("UserId is required.");
             }
 
-            var cities = await _favoritesService.GetFavoritesByUserId(userId);
-            if (cities == null)
+            var cities = await _favoritesService.GetFavoritesByUserId(request.UserId);
+            if (cities == null || cities.Count == 0)
             {
-                return NotFound("User not found.");
+                return NotFound("No favorite cities found.");
             }
             return Ok(cities);
+        }
+
+        public class UserRequest
+        {
+            public string UserId { get; set; } = string.Empty;
         }
     }
 }
