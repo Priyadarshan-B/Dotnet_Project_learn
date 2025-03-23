@@ -12,8 +12,8 @@
         <MudPaper Elevation="2" Class="pa-10">
             <MudText Typo="Typo.h5" Class="mud-text-center mb-4">Login</MudText>
             <MudForm Model="loginModel" onSubmit="HandleLogin">
-                <MudTextField Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
-                    @bind-Value="loginModel.Username"></MudTextField>
+                <MudTextField Label="Email" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
+                    @bind-Value="loginModel.Email"></MudTextField>
                 <br />
                 <MudTextField Label="Password" Variant="Variant.Outlined" Margin="Margin.Dense" Required="true"
                     @bind-Value="loginModel.Password" InputType="@PasswordInput" Adornment="Adornment.End"
@@ -78,7 +78,7 @@
             }
             else
             {
-                errorMessage = "Invalid username or password";
+                errorMessage = "Invalid email or password";
             }
         }
          catch (Exception ex)
@@ -93,7 +93,7 @@
 
     public class LoginModel
     {
-        public string Username { get; set; } = "";
+        public string Email { get; set; } = "";
         public string Password { get; set; } = "";
     }
      public class LoginResponse
@@ -107,5 +107,6 @@
         public string Id {get;set;} = string.Empty;
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public string Phone {get;set;} = string.Empty;
     }
 }

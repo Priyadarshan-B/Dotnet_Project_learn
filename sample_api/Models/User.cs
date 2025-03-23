@@ -21,6 +21,8 @@ public class User : BaseModel
 
     [Column("phone")]
     public string Phone { get; set; } = string.Empty;
+
+    
 }
 
 //using MongoDB.Bson;

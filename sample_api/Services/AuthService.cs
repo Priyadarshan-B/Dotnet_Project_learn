@@ -47,7 +47,7 @@ public async Task<User?> RegisterUser(string username, string email, string pass
     }
 }
 
-public async Task<User?> Login(string email, string password)
+public async Task<UserResponse?> Login(string email, string password)
 {
     try
     {
@@ -60,7 +60,13 @@ public async Task<User?> Login(string email, string password)
                 .Where(u => u.Email == email)
                 .Single();
 
-            return user; 
+            return new UserResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Phone = user.Phone
+            };
         }
 
         return null;
