@@ -1,58 +1,54 @@
-﻿@* <MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
-    <MudNavMenu Class="mud-width-full">
+﻿@using MudBlazor
+@inject NavigationManager Navigation
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject GlobalState GlobalState
+
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudAppBar Elevation="1" Style="@($"background:{Colors.Indigo.Lighten2};")">
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+
+    @if (string.IsNullOrEmpty(GlobalState.UserName))
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <p><strong>Welcome @GlobalState.UserName.ToUpper()</strong></p>
+    }
+
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
+</MudAppBar>
+
+<MudDrawer @bind-Open="@_drawerOpen" Elevation="1">
+    <MudDrawerHeader Class="d-flex flex-column">
         <MudText Typo="Typo.h6" Class="px-4">Weather</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">climate</MudText>
+        <MudText Typo="Typo.body1" Class="px-4 mud-text-secondary">Real Time Climate</MudText>
         <MudDivider Class="my-2" />
-        <MudNavLink Href="/weather" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
-        <MudNavGroup Title="Login" Icon="@Icons.Material.Filled.Settings" Expanded="true">
-            <MudNavLink Href="/register" Icon="@Icons.Material.Filled.People" IconColor="Color.Success">Register</MudNavLink>
-            <MudNavLink Href="/logout" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info">Logout</MudNavLink>
+    </MudDrawerHeader>
+    <MudNavMenu Rounded="true" Margin="Margin.Dense" Color="Color.Primary" Class="pa-2">
+        <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
+        <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="false">
+            <MudNavLink Match="NavLinkMatch.Prefix" Href="/register" Icon="@Icons.Material.Filled.People">Register</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.Prefix" Href="/login" Icon="@Icons.Material.Filled.Security">Logout</MudNavLink>
         </MudNavGroup>
     </MudNavMenu>
-</MudPaper> *@
+</MudDrawer>
 
+@code {
+    private bool _drawerOpen = true;
 
-@* <div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">weather</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        @* <div class="nav-item px-3"> *@
-        @*     <NavLink class="nav-link" href="counter"> *@
-        @*         <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter *@
-        @*     </NavLink> *@
-        @* </div> *@
-        @* <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="register">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Register
-            </NavLink>
-        </div>
-    </nav>
-</div> *@
-
-@* @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    protected override async Task OnInitializedAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
+        await GlobalState.LoadUserData();
     }
-} *@
+
+    private void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

@@ -1,71 +1,21 @@
 ﻿@inherits LayoutComponentBase
-@using MudBlazor
 @inject NavigationManager Navigation
-@inject Blazored.LocalStorage.ILocalStorageService localStorage
-@inject GlobalState GlobalState
 
-<MudThemeProvider />
-<MudPopoverProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
-
-@if (Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase) || 
+@if (Navigation.Uri.EndsWith("/", StringComparison.OrdinalIgnoreCase) || 
+     Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase) || 
      Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase))
 {
-    @Body
+    @Body  
 }
 else
 {
     <MudLayout>
-        <MudAppBar Elevation="1" Style="@($"background:{Colors.Indigo.Lighten2};")">
-            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <NavMenu />
 
-            @if (string.IsNullOrEmpty(GlobalState.UserName))
-            {
-                <p>Loading...</p>
-            }
-            else
-            {
-                <p><strong>Welcome @GlobalState.UserName.ToUpper()</strong></p>
-            }
-
-            <MudSpacer />
-            <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
-        </MudAppBar>
-
-        <MudDrawer @bind-Open="@_drawerOpen" Elevation="1">
-            <MudDrawerHeader Class="d-flex flex-column">
-                <MudText Typo="Typo.h6" Class="px-4">Weather</MudText>
-                <MudText Typo="Typo.body1" Class="px-4 mud-text-secondary">Real Time Climate</MudText>
-                <MudDivider Class="my-2" />
-            </MudDrawerHeader>
-            <MudNavMenu Rounded="true" Margin="Margin.Dense" Color="Color.Primary" Class="pa-2">
-                <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Weather</MudNavLink>
-                <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="false">
-                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/register" Icon="@Icons.Material.Filled.People">Register</MudNavLink>
-                    <MudNavLink Match="NavLinkMatch.Prefix" Href="/login" Icon="@Icons.Material.Filled.Security">Logout</MudNavLink>
-                </MudNavGroup>
-            </MudNavMenu>
-        </MudDrawer>
-
-        <MudMainContent Class="pt-16 px-16">
-            <MudContainer Class="mt-6">
-                @Body
+        <MudMainContent>
+            <MudContainer>
+                @Body  
             </MudContainer>
         </MudMainContent>
     </MudLayout>
-}
-
-@code {
-    private bool _drawerOpen = true;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await GlobalState.LoadUserData();
-    }
-
-    private void ToggleDrawer()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
 }
