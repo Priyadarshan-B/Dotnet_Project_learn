@@ -1,0 +1,11 @@
+@inject NavigationManager Navigation
+
+<p>You are not authorized to view this page. Redirecting...</p>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        Navigation.NavigateTo("/login", forceLoad: true);
+    }
+}

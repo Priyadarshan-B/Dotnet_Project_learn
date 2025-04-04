@@ -5,7 +5,15 @@
      Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase) || 
      Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase))
 {
-    @Body  
+   <MudLayout>
+    <MudMainContent>
+        <MudContainer >
+            <MudPaper>
+            @Body  
+            </MudPaper>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>  
 }
 else
 {
@@ -13,7 +21,7 @@ else
         <NavMenu />
 
         <MudMainContent>
-            <MudContainer>
+            <MudContainer >
                 @Body  
             </MudContainer>
         </MudMainContent>
