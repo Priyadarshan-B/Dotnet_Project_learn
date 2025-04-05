@@ -1,29 +1,19 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager Navigation
 
-@if (Navigation.Uri.EndsWith("/", StringComparison.OrdinalIgnoreCase) || 
-     Navigation.Uri.Contains("login", StringComparison.OrdinalIgnoreCase) || 
-     Navigation.Uri.Contains("register", StringComparison.OrdinalIgnoreCase))
-{
-   <MudLayout>
+<MudLayout>
+    @if (!Navigation.Uri.EndsWith("/", StringComparison.OrdinalIgnoreCase) && 
+         !Navigation.Uri.EndsWith("/login", StringComparison.OrdinalIgnoreCase) && 
+         !Navigation.Uri.EndsWith("/register", StringComparison.OrdinalIgnoreCase))
+    {
+        <NavMenu />
+    }
+
     <MudMainContent>
-        <MudContainer >
-            <MudPaper>
-            @Body  
-            </MudPaper>
+        <MudContainer>
+            @* <MudPaper> *@
+                @Body
+            @* </MudPaper> *@
         </MudContainer>
     </MudMainContent>
-</MudLayout>  
-}
-else
-{
-    <MudLayout>
-        <NavMenu />
-
-        <MudMainContent>
-            <MudContainer >
-                @Body  
-            </MudContainer>
-        </MudMainContent>
-    </MudLayout>
-}
+</MudLayout>

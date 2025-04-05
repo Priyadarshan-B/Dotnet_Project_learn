@@ -10,7 +10,7 @@ namespace sample_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>() .HasIndex(u => u.Username).IsUnique();
+            modelBuilder.Entity<User>() .HasIndex(u => u.Email).IsUnique();
         }
 
     }

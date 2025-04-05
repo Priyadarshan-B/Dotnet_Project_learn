@@ -11,7 +11,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.Services.AddScoped<GlobalState>();
 builder.Services.AddAuthorizationCore();
 // builder.Services.AddScoped<CustomAuthStateProvider>();
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+// builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 // builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<CustomAuthStateProvider>());
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();

@@ -1,165 +1,87 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BCrypt.Net;
 using Supabase;
 using sample_api.Models;
+using MongoDB.Driver;
 
-namespace sample_api.Services;
-
-public class AuthService
+namespace sample_api.Services
 {
-    private readonly Client _supabase;
-
-    public AuthService(Client supabase)
+    public class AuthService
     {
-        _supabase = supabase;
-    }
+        private readonly Client _supabase;
+        private readonly IMongoCollection<UserDetails> _users;
 
-public async Task<User?> RegisterUser(string username, string email, string password, string phone)
-{
-    try
-    {
-        var session = await _supabase.Auth.SignUp(email, password);
-
-        if (session?.User != null)
+        public AuthService(Client supabase, IMongoClient mongoClient)
         {
-            var newUser = new User
-            {
-                Id = Guid.NewGuid(),
-                Username = username,
-                Email = email,
-                Password = BCrypt.Net.BCrypt.HashPassword(password), 
-                Phone = phone
-            };
-
-            await _supabase
-                .From<User>()
-                .Insert(newUser);
-
-            return newUser; 
+            _supabase = supabase;
+            var database = mongoClient.GetDatabase("sample_login");
+            _users = database.GetCollection<UserDetails>("Users");
         }
 
-        return null;
-    }
-    catch (Exception ex)
-    {
-        throw; 
-    }
-}
-
-public async Task<UserResponse?> Login(string email, string password)
-{
-    try
-    {
-        var session = await _supabase.Auth.SignIn(email, password);
-
-        if (session?.User != null)
+        public async Task<UserDetails?> RegisterUser(string username, string email, string password, string phone)
         {
-            var user = await _supabase
-                .From<User>()
-                .Where(u => u.Email == email)
-                .Single();
-
-            return new UserResponse
+            try
             {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email,
-                Phone = user.Phone
-            };
+                var response = await _supabase.Auth.SignUp(email, password);
+
+                if (response.User == null)
+                    return null;
+
+                 var supabaseId = response.User.Id;
+                var supabaseIdString = supabaseId.ToString();
+
+
+                var existingUser = await _users.Find(u => u.SupabaseId == supabaseIdString).FirstOrDefaultAsync();
+                if (existingUser != null)
+                    throw new Exception("User already registered.");
+
+                var userDetails = new UserDetails
+                {
+                    SupabaseId = supabaseIdString,
+                    Username = username,
+                    Phone = phone
+                };
+                await _users.InsertOneAsync(userDetails);
+                return userDetails;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error during registration", ex);
+            }
         }
 
-        return null;
-    }
-    catch (Exception ex)
-    {
-        throw; 
+        public async Task<UserResponse?> Login(string email, string password)
+        {
+            try
+            {
+                var session = await _supabase.Auth.SignIn(email, password);
+
+                if (session?.User == null)
+                {
+                    return null;
+                }
+                var supabaseId = session.User.Id;
+                var supabaseIdString = supabaseId.ToString();
+
+                var userDetails = await _users.Find(u => u.SupabaseId == supabaseIdString).FirstOrDefaultAsync();
+
+                if (userDetails != null)
+                {
+                    return new UserResponse
+                    {
+                        Id = supabaseIdString, 
+                        Username = userDetails.Username,
+                        Email = session.User.Email,
+                        Phone = userDetails.Phone
+                    };
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error during login", ex);
+            }
+        }
     }
 }
-    private async Task<User?> GetUserByEmail(string email)
-    {
-        return await _supabase
-            .From<User>()
-            .Where(u => u.Email == email)
-            .Single();
-    }
-}
-
-
-
-
-
-
-//using System;
-//using MongoDB.Driver;
-//using Microsoft.Extensions.Configuration;
-//using sample_api.Models;
-//using BCrypt.Net;
-
-//namespace sample_api.Services
-//{
-//    public class AuthServices
-//    {
-//        private readonly IMongoCollection<User> _users;
-
-//        public AuthServices(IConfiguration configuration)
-//        {
-//            var client = new MongoClient(configuration.GetConnectionString("MongoDB"));
-//            var database = client.GetDatabase("sample_login");
-//            _users = database.GetCollection<User>("users");
-//        }
-
-//        private string HashPassword(string password)
-//        {
-//            return BCrypt.Net.BCrypt.HashPassword(password);
-//        }
-
-//        private bool VerifyPassword(string password, string hashedPassword)
-//        {
-//            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-//        }
-//        public class UserDTO
-//        {
-//            public string Id {get;set;} = string.Empty;
-//            public string Username { get; set; } = string.Empty;
-//            public string Email { get; set; } = string.Empty;
-
-//        }
-//        public UserDTO? Authenticate(string username, string password)
-//        {
-
-//            var user = _users.Find(u => u.Username == username).FirstOrDefault();
-//            if ((user == null) || !VerifyPassword(password, user.Password))
-//            {
-//                return null;
-//            }
-//            return new UserDTO
-//            {
-//                Id = user.Id,
-//                Username = user.Username,
-//                Email = user.Email
-//            };
-//        }
-
-//        public User Register(User user)
-//        {
-//            if (UserExists(user.Username))
-//            {
-//                throw new Exception("User already exists");
-//            }
-
-//            user.Password = HashPassword(user.Password);
-
-//            _users.InsertOne(user);
-//            return user;
-
-//        }
-
-//        private bool UserExists(string username)
-//        {
-//            var existingUser = _users.Find(u => u.Username == username).FirstOrDefault();
-//            return existingUser != null;
-
-//        }
-//    }
-//}

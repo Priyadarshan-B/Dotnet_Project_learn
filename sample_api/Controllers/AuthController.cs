@@ -14,9 +14,9 @@ namespace sample_api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly AuthService _authService;
-     private const string JwtSecretKey = "key is enough secret for 16-bytes";
-       private const string Issuer = "http://localhost";
-       private const string Audience = "http://localhost";
+    private const string JwtSecretKey = "key is enough secret for 16-bytes";
+    private const string Issuer = "http://localhost";
+    private const string Audience = "http://localhost";
 
     public AuthController(AuthService authService)
     {
@@ -24,144 +24,59 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-{
-    var newUser = await _authService.RegisterUser(request.Username, request.Email, request.Password, request.Phone);
-    if (newUser == null)
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        return BadRequest(new { status = 400, message = "Registration failed" });
+        var newUser = await _authService.RegisterUser(request.Username, request.Email, request.Password, request.Phone);
+        if (newUser == null)
+        {
+            return BadRequest(new { status = 400, message = "Registration failed" });
+        }
+
+        return Ok(new { 
+            status = 200, 
+            message = "User registered successfully", 
+            user = new 
+            {
+                Id = newUser.SupabaseId.ToString(),
+                Username = newUser.Username,
+                Phone = newUser.Phone
+            }
+        });
     }
 
-    var userResponse = new UserResponse
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        Id = newUser.Id,
-        Username = newUser.Username,
-        Email = newUser.Email,
-        Phone = newUser.Phone
-    };
+        var user = await _authService.Login(request.Email, request.Password);
+        if (user == null)
+        {
+            return Unauthorized(new { status = 401, message = "Invalid credentials" });
+        }
 
-    return Ok(new { status = 200, message = "User registered successfully", user = userResponse });
-}
-   [HttpPost("login")]
-public async Task<IActionResult> Login([FromBody] LoginRequest request)
-{
-    var user = await _authService.Login(request.Email, request.Password);
-    if (user == null)
-    {
-        return Unauthorized(new { status = 401, message = "Invalid credentials" });
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Email, user.Email)
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSecretKey));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: Issuer,
+            audience: Audience,
+            claims: claims,
+            expires: DateTime.Now.AddHours(24),
+            signingCredentials: creds
+        );
+
+        return Ok(new
+        {
+            status = 200,
+            message = "Login successful",
+            user,
+            token = new JwtSecurityTokenHandler().WriteToken(token)
+        });
     }
-
-    var claims = new[]
-    {
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), 
-        new Claim(ClaimTypes.Name, user.Username),
-        new Claim(ClaimTypes.Email, user.Email)
-    };
-
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSecretKey));
-    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-    var token = new JwtSecurityToken(
-        issuer: Issuer,
-        audience: Audience,
-        claims: claims,
-        expires: DateTime.Now.AddHours(24), 
-        signingCredentials: creds
-    );
-
-    var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-
-    var userResponse = new UserResponse
-    {
-        Id = user.Id,
-        Username = user.Username,
-        Email = user.Email,
-        Phone = user.Phone
-    };
-
-    return Ok(new { status = 200, message = "Login successful", user = userResponse, token = jwtToken });
 }
-}
-
-
-//using Microsoft.AspNetCore.Mvc;
-//using sample_api.Models;
-//using sample_api.Services;
-//using Microsoft.IdentityModel.Tokens;
-//using System.IdentityModel.Tokens.Jwt;
-//using System.Security.Claims;
-//using System.Text;
-
-//namespace sample_api.Controllers
-//{
-//    [Route("api/auth")]
-//    [ApiController]
-//    public class AuthController : ControllerBase
-//    {
-//        private readonly AuthServices _authServices;
-//        private const string JwtSecretKey = "key is enough secret for 16-bytes";
-//        private const string Issuer = "http://localhost";
-//        private const string Audience = "http://localhost";
-
-//        public AuthController(AuthServices authServices)
-//        {
-//            _authServices = authServices;
-//        }
-
-//        [HttpPost("login")]
-//        public IActionResult Login([FromBody] LoginRequest request)
-//        {
-//            try
-//            {
-//                if (request == null || string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
-//                    return BadRequest(new { status = 400, message = "Invalid request" });
-
-//                var UserDTO = _authServices.Authenticate(request.Username, request.Password);
-//                if (UserDTO == null)
-//                    return Unauthorized(new { status = 401, message = "Invalid credentials" });
-//                var claims = new[]
-//                {
-//                    new Claim(ClaimTypes.NameIdentifier, UserDTO.Id),
-//                    new Claim(ClaimTypes.Name, UserDTO.Username),
-//                    new Claim(ClaimTypes.Email, UserDTO.Email)
-//                };
-//                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSecretKey));
-//                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-//                var token = new JwtSecurityToken(
-//                   issuer: Issuer,
-//                   audience: Audience,
-//                   claims: claims,
-//                   expires: DateTime.Now.AddHours(24),
-//                   signingCredentials: creds
-//               );
-//                var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-//                return Ok(new { status = 200, message = "Login successful", UserDTO, token = jwtToken });
-//            }
-//            catch (Exception ex)
-//            {
-//                return StatusCode(500, new { status = 500, message = "Internal server error", error = ex.Message });
-//            }
-
-//        }
-
-//        [HttpPost("register")]
-//        public IActionResult Register([FromBody] User user)
-//        {
-//            if (user == null || string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
-//            {
-//                return BadRequest(new { status = 400, message = "Username and Password are required." });
-//            }
-
-//            try
-//            {
-//                var registeredUser = _authServices.Register(user);
-//                return Ok(new { status = 200, message = "Registered Successfully", user = registeredUser });
-//            }
-//            catch (Exception ex)
-//            {
-//                return StatusCode(500, new { status = 500, message = "Registration failed", error = ex.Message });
-//            }
-//        }
-//    }
-//}
