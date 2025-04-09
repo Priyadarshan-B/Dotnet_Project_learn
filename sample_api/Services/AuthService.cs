@@ -69,10 +69,11 @@ namespace sample_api.Services
                 {
                     return new UserResponse
                     {
-                        Id = supabaseIdString, 
+                        Id = userDetails.Id, 
                         Username = userDetails.Username,
                         Email = session.User.Email,
-                        Phone = userDetails.Phone
+                        Phone = userDetails.Phone,
+                        Role = userDetails.Role
                     };
                 }
 

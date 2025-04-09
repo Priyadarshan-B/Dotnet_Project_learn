@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 
@@ -14,7 +16,8 @@ public class GlobalState
     public string UserId { get;  set; } = string.Empty;
     public string UserName { get;  set; } = string.Empty;
     public string Email { get;  set; } = string.Empty;
-    public bool IsAuthenticated => !string.IsNullOrEmpty(UserId) && !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Email);
+    public string Role { get; set; } = string.Empty;
+    public bool IsAuthenticated => !string.IsNullOrEmpty(UserId) && !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Role);
 
     public event Action? OnChange;
 
@@ -48,6 +51,7 @@ public class GlobalState
             UserId = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
             UserName = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value ?? string.Empty;
             Email = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value ?? string.Empty;
+            Role = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? string.Empty;
 
             //Console.WriteLine($"User Loaded: {UserName}, {Email}");
 

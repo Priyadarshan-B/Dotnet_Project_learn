@@ -22,8 +22,10 @@ builder.Services.AddSingleton(supabase);
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient("mongodb://localhost:27017"));
 
+
 // Add services to the container.
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<MenuService>();
 builder.Services.AddScoped<FavoritesService>();
 
 //Cors

@@ -14,5 +14,6 @@ namespace sample_api.Models
 
         public string Username { get; set; }
         public string Phone { get; set; }
+        public string Role { get; set; }
     }
 }

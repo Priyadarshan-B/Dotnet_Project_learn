@@ -10,7 +10,6 @@ namespace sample_api.Models
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; } 
 
-    [BsonRepresentation(BsonType.ObjectId)]
     public string UserId { get; set; } = string.Empty;
 
     public List<string> Cities { get; set; } = new();
