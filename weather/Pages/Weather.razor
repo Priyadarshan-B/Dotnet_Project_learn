@@ -14,21 +14,28 @@
 
         <MudTextField Label="Enter City" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="City" />
 
-        <MudButton Color="Color.Primary" Class="mt-4 d-flex flex-row" OnClick="() => GetWeather(City)" Disabled="isLoading">
-            @if (isLoading)
-            {
-                <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
-            }
-            else
-            {
-                <span>Get Weather Report</span>
-            }
-        </MudButton>
-        <MudDivider Class="ma-4" />
-        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="@OpenDialog" Size="Size.Small">
-            Add Favorite City
-        </MudButton>
-        <MudPopover Open="@_open" AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.CenterCenter">
+        <MudStack Direction="Direction.Row" Spacing="2" Class="mt-4">
+    <MudButton Color="Color.Primary"OnClick="() => GetWeather(City)" Disabled="isLoading">
+        @if (isLoading)
+        {
+            <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
+        }
+        else
+        {
+            <MudText Typo="Typo.button" Class="ml-2">Get Weather Report</MudText>
+        }
+    </MudButton>
+
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="@OpenDialog" Size="Size.Small">
+        Add Favorite City
+    </MudButton>
+
+    <MudButton Color="Color.Secondary" Variant="Variant.Filled" OnClick="Get7DayForecast" Disabled="isLoading || string.IsNullOrEmpty(City)">
+        View 7 Days Forecast
+    </MudButton>
+</MudStack>
+
+<MudPopover Open="@_open" AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.CenterCenter">
             <div class="pa-10">
                 <MudSelect class="pb-4" MultiSelection="true" @bind-Value="_value" @bind-SelectedValues="_options"
                     Variant="Variant.Outlined">
@@ -41,14 +48,13 @@
                 <MudStack Spacing="2">
                     <MudButton Variant="Variant.Outlined" Color="Color.Success" OnClick="@AddFavoriteCity">Submit
                     </MudButton>
-                    
+
                     <MudButton Variant="Variant.Outlined" Color="Color.Error" OnClick="@OpenDialog">Close
                     </MudButton>
                 </MudStack>
 
             </div>
         </MudPopover>
-
         @if (weatherData != null)
         {
             <MudCard Class="mt-4">
@@ -67,23 +73,51 @@
         @if (!string.IsNullOrEmpty(errorMessage))
         {
             <MudAlert Severity="Severity.Error" Class="mt-4" Visible="@(errorMessage != null)">
-               No Favourites...
+                No Favourites...
             </MudAlert>
         }
 
     </MudPaper>
 </MudContainer>
-<MudContainer  MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
-    <MudPaper  Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")"
+
+
+@if (showForecast && forecastData.Count > 0)
+{
+    <MudTable Items="forecastData" Hover="true" Dense="true" Striped="true" Elevation="1" Class="mt-4">
+        <HeaderContent>
+            <MudTh>Date</MudTh>
+            <MudTh>Weather</MudTh>
+            <MudTh>Temp (°C)</MudTh>
+            <MudTh>Min</MudTh>
+            <MudTh>Max</MudTh>
+            <MudTh>Humidity (%)</MudTh>
+            <MudTh>Wind Speed (km/h)</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Date">@context.ParsedDate.ToString("ddd, MMM dd")</MudTd>
+            <MudTd DataLabel="Weather">@context.day.condition.text</MudTd>
+            <MudTd DataLabel="Temp">@context.day.avgtemp_c</MudTd>
+            <MudTd DataLabel="Min">@context.day.mintemp_c</MudTd>
+            <MudTd DataLabel="Max">@context.day.maxtemp_c</MudTd>
+            <MudTd DataLabel="Humidity">@context.day.avghumidity</MudTd>
+            <MudTd DataLabel="Wind Speed">@context.day.maxwind_kph</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+
+<MudContainer MaxWidth="MaxWidth.Medium" Color="Color.Primary" Class="weather-container pt-20">
+    <MudPaper Elevation="4" Class="pa-10 ma-2" Style="@($"background-color:{Colors.Indigo.Lighten5};")"
         Color="Color.Primary">
         <MudText Typo="Typo.h5" Align="Align.Center">Favourites Cities for @GlobalState.UserName...</MudText>
-        
+
         <MudList T="string">
             @if (favoriteCities.Count > 0)
             {
                 @foreach (var city in favoriteCities)
                 {
-                        <MudChip T="string" Color="Color.Primary" Variant="Variant.Text" OnClick="() => GetWeather(city)">@city</MudChip>
+                    <MudChip T="string" Color="Color.Primary" Variant="Variant.Text" OnClick="() => GetWeather(city)">@city
+                    </MudChip>
                 }
             }
             else
@@ -104,7 +138,9 @@
     private bool isLoading = false;
     private string? errorMessage = null;
     private WeatherResponse? weatherData;
-private List<string> favoriteCities = new();
+    private bool showForecast = false;
+    private List<ForecastDay> forecastData = new();
+    private List<string> favoriteCities = new();
 
 
     public bool _open;
@@ -124,17 +160,17 @@ private List<string> favoriteCities = new();
     private readonly string[] _states =
     [
     "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem",
-    "Erode", "Tirunelveli", "Vellore", "Thoothukudi", "Dindigul",
-    "Thanjavur", "Ranipet", "Sivakasi", "Kanchipuram", "Nagercoil",
-    "Kumbakonam", "Karur", "Udhagamandalam (Ooty)", "Cuddalore",
-    "Hosur", "Ambur", "Pudukkottai", "Nagapattinam", "Tiruvannamalai",
-    "Ariyalur", "Pollachi", "Karaikudi", "Namakkal", "Dharmapuri",
-    "Tenkasi", "Perambalur", "Theni", "Mayiladuthurai", "Villupuram",
-    "Krishnagiri", "Tirupattur","Tirupur"
-];
+"Erode", "Tirunelveli", "Vellore", "Thoothukudi", "Dindigul",
+"Thanjavur", "Ranipet", "Sivakasi", "Kanchipuram", "Nagercoil",
+"Kumbakonam", "Karur", "Udhagamandalam (Ooty)", "Cuddalore",
+"Hosur", "Ambur", "Pudukkottai", "Nagapattinam", "Tiruvannamalai",
+"Ariyalur", "Pollachi", "Karaikudi", "Namakkal", "Dharmapuri",
+"Tenkasi", "Perambalur", "Theni", "Mayiladuthurai", "Villupuram",
+"Krishnagiri", "Tirupattur","Tirupur"
+    ];
 
 
-    private async Task GetWeather(string? selectedCity= null)
+    private async Task GetWeather(string? selectedCity = null)
     {
         isLoading = true;
         errorMessage = null;
@@ -177,14 +213,14 @@ private List<string> favoriteCities = new();
             if (response.IsSuccessStatusCode)
             {
                 @* errorMessage = "Favorite city added successfully."; *@
-                                await  FetchFavoriteCities();
+                await FetchFavoriteCities();
                 Snackbar.Add($"Success {"Favorite city added successfully"}", Severity.Success);
 
             }
             else
             {
                 @* errorMessage = "Failed to add favorite city."; *@
-                await  FetchFavoriteCities();
+                await FetchFavoriteCities();
                 Snackbar.Add($"Error {"Failed to add favorite city."}", Severity.Error);
             }
         }
@@ -194,27 +230,99 @@ private List<string> favoriteCities = new();
         }
     }
 
+public class ForecastDay
+    {
+        public string date { get; set; } = "";
+        public Day day { get; set; } = new();
+        public DateTime ParsedDate => DateTime.Parse(date);
+    }
+
+    public class Day
+    {
+        public double maxtemp_c { get; set; }
+        public double mintemp_c { get; set; }
+        public double avgtemp_c { get; set; }
+        public double avghumidity { get; set; }
+        public double maxwind_kph { get; set; }
+        public Condition condition { get; set; } = new();
+    }
+
+    public class Condition
+    {
+        public string text { get; set; } = "";
+    }
+
+    public class ForecastResponse
+    {
+        public Forecast forecast { get; set; } = new();
+    }
+
+    public class Forecast
+    {
+        public List<ForecastDay> forecastday { get; set; } = new();
+    }
+
+    private async Task Get7DayForecast()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = null;
+            showForecast = false;
+
+            if (string.IsNullOrWhiteSpace(City))
+            {
+                errorMessage = "Please enter a city name.";
+                return;
+            }
+
+            string apiKey = "a239da81dc2a4cceb05154414251304"; 
+            string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={City}&days=7&aqi=no&alerts=no";
+
+            var response = await Http.GetFromJsonAsync<ForecastResponse>(url);
+
+            if (response != null && response.forecast.forecastday != null)
+            {
+                forecastData = response.forecast.forecastday;
+                showForecast = true;
+            }
+            else
+            {
+                errorMessage = "No forecast data found.";
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "Error fetching forecast data.";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+
     private async Task FetchFavoriteCities()
     {
         try
         {
-           var userid = GlobalState.UserId;
-             Console.WriteLine($"UserID: {userid}");
+            var userid = GlobalState.UserId;
+            Console.WriteLine($"UserID: {userid}");
             var body = new { UserId = userid };
-            var response = await Http.PostAsJsonAsync($"http://localhost:5029/api/fav/get-favorites",body);
+            var response = await Http.PostAsJsonAsync($"http://localhost:5029/api/fav/get-favorites", body);
 
-           if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-            var cities = await response.Content.ReadFromJsonAsync<List<string>>();
-            if (cities != null)
-            {
-                favoriteCities = cities;
+                var cities = await response.Content.ReadFromJsonAsync<List<string>>();
+                if (cities != null)
+                {
+                    favoriteCities = cities;
+                }
             }
-        }
-        else
-        {
-            errorMessage = "Failed to fetch favorite cities.";
-        }
+            else
+            {
+                errorMessage = "Failed to fetch favorite cities.";
+            }
         }
         catch (Exception)
         {
@@ -223,7 +331,7 @@ private List<string> favoriteCities = new();
     }
 
 
- protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         await GlobalState.LoadUserData();
         await FetchFavoriteCities();
