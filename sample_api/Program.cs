@@ -37,7 +37,8 @@ builder.Services.AddScoped<FavoritesService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
-        policy.WithOrigins("http://localhost:5222") 
+        policy.WithOrigins("http://localhost:5222")
+        policy.WithOrigins("https://dotnet-project-learn.onrender.com")  
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials());
