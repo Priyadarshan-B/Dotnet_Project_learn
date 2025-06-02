@@ -209,7 +209,9 @@
                 userId = userid,
                 cities = _options
             };
-            var response = await Http.PostAsJsonAsync("http://localhost:5029/api/fav", body);
+            var apiBaseUrl = await Http.GetFromJsonAsync<string>("appsettings.json");
+
+            var response = await Http.PostAsJsonAsync($"{apiBaseUrl}/api/fav", body);
             if (response.IsSuccessStatusCode)
             {
                 @* errorMessage = "Favorite city added successfully."; *@
@@ -309,7 +311,8 @@ public class ForecastDay
             var userid = GlobalState.UserId;
             Console.WriteLine($"UserID: {userid}");
             var body = new { UserId = userid };
-            var response = await Http.PostAsJsonAsync($"http://localhost:5029/api/fav/get-favorites", body);
+            var apiBaseUrl = await Http.GetFromJsonAsync<string>("appsettings.json");
+            var response = await Http.PostAsJsonAsync($"{apiBaseUrl}/api/fav/get-favorites", body);
 
             if (response.IsSuccessStatusCode)
             {

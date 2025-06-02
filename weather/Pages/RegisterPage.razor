@@ -79,8 +79,9 @@
         isLoading = true;
         errorMessage = null;
         successMessage = null;
+        var apiBaseUrl = await Http.GetFromJsonAsync<string>("appsettings.json");
 
-        var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/register", registerModel);
+        var response = await Http.PostAsJsonAsync($"{apiBaseUrl}/api/auth/register", registerModel);
 
         if (response.IsSuccessStatusCode)
         {

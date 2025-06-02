@@ -67,9 +67,12 @@
         isLoading = true;
         errorMessage = null;
         StateHasChanged();
+        var apiBaseUrl = await Http.GetFromJsonAsync<string>("appsettings.json");
+
         try
         {
-            var response = await Http.PostAsJsonAsync("http://localhost:5029/api/auth/login", loginModel);
+            var response = await Http.PostAsJsonAsync($"{apiBaseUrl}/api/auth/login", loginModel);
+
             if (response.IsSuccessStatusCode)
             {
                 var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
