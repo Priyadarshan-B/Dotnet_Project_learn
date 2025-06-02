@@ -19,9 +19,9 @@ var supabase = new Supabase.Client(supabaseUrl, supabaseKey, options);
 await supabase.InitializeAsync();
 builder.Services.AddSingleton(supabase);
 
+var mongoConnectionString = "mongodb+srv://priyan:Priyan%402004@cluster0.eomizaj.mongodb.net/";
 builder.Services.AddSingleton<IMongoClient>(s =>
-    new MongoClient("mongodb://localhost:27017"));
-
+    new MongoClient(mongoConnectionString));
 
 // Add services to the container.
 builder.Services.AddScoped<AuthService>();
